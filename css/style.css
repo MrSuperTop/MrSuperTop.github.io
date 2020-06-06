@@ -88,6 +88,8 @@ body::-webkit-scrollbar-thumb
 	border-radius: .3rem;
 
 	font-weight: bolder;
+
+	min-width: 24rem;
 }
 
 .deskr
