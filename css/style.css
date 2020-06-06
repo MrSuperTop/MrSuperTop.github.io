@@ -51,8 +51,8 @@ body::-webkit-scrollbar-thumb
 
 .main-text
 {
-	width: 12rem;
-	height: 2rem;
+	width: 24rem;
+	height: 10rem;
 
 	text-align: center;
 }
@@ -86,6 +86,13 @@ body::-webkit-scrollbar-thumb
 	background-color: #fff;
 
 	border-radius: .3rem;
+
+	font-weight: bolder;
+}
+
+.deskr
+{
+	margin-bottom: 1rem;
 
 	font-weight: bolder;
 }
