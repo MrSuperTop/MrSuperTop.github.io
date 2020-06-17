@@ -1,0 +1,159 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+  </head>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <body>
+
+		<div class="inputs">
+			<input type="text" placeholder="Чему равен y?" class='func'>
+	  	<input type="text" placeholder="Мин. x" class='mix-x'>
+	  	<input type="text" placeholder="Макс. x" class='max-x'>
+	  	<input type="text" placeholder="Шаг x" class='step-x'>
+		</div>
+
+		<div class="checkboxes">
+			<div class="checkbox-box">
+				<input type="checkbox" name="">
+				<p>y = x</p>
+			</div>
+
+			<div class="checkbox-box">
+				<input type="checkbox" name="">
+				<p>y = 1 / x</p>
+			</div>
+
+			<div class="checkbox-box">
+				<input type="checkbox" name="">
+				<p>y = √x</p>
+			</div>
+
+			<div class="checkbox-box">
+				<input type="checkbox" name="">
+				<p>y = x^2</p>
+			</div>
+
+			<div class="checkbox-box">
+				<input type="checkbox" name="">
+				<p>y = x^3</p>
+			</div>
+
+			<div class="checkbox-box">
+				<input type="checkbox" name="">
+				<p>y = x^4?</p>
+			</div>
+		</div>
+
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+
+    <div class="btn">Generate chart</div>
+
+  </body>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+			document.getElementsByClassName ('btn') [0].addEventListener ('click', function () {
+				google.charts.load('current', {packages: ['corechart', 'line']});
+				google.charts.setOnLoadCallback(drawBasic);
+			})
+
+			function drawBasic() {
+
+			      // data.addColumn('number', 'x')
+			      // data.addColumn('number', 'y = ' + document.body.children [0].value);
+
+			      function returnNumbersArray (x) {
+							let y = eval (document.querySelectorAll ('input[type="text"]') [0].value);
+							return [x, y];
+						}
+
+						let res = [];
+						let checkboxesList = document.querySelectorAll ('input[type="checkbox"]')
+
+						if (+document.querySelectorAll ('input[type="text"]') [0].value != 0) {
+							for (let i = +document.querySelectorAll ('input[type="text"]') [1].value;
+							 i <= +document.querySelectorAll ('input[type="text"]') [2].value;
+							  i += +document.querySelectorAll ('input[type="text"]') [3].value) {
+								let toRes = returnNumbersArray (i)
+
+								if (checkboxesList [0].checked) {
+									toRes.push (i)
+								}
+								if (checkboxesList [1].checked) {
+									toRes.push (1 / i)
+								}
+								if (checkboxesList [2].checked) {
+									toRes.push (Math.sqrt (i))
+								}
+								if (checkboxesList [3].checked) {
+									toRes.push (i ** 2)
+								}
+								if (checkboxesList [4].checked) {
+									toRes.push (i ** 3)
+								}
+								if (checkboxesList [5].checked) {
+									toRes.push (i ** 4)
+								}
+								console.log ('to res:' + toRes)
+								res.push (toRes)
+							}
+						}
+
+						let toUnshift = ['x', 'y']
+						if (checkboxesList [0].checked) {
+								toUnshift.push ('y = x')
+							}
+							if (checkboxesList [1].checked) {
+								toUnshift.push ('y = 1 / x')
+							}
+							if (checkboxesList [2].checked) {
+								toUnshift.push ('y = √x')
+							}
+							if (checkboxesList [3].checked) {
+								toUnshift.push ('y = x^2')
+							}
+							if (checkboxesList [4].checked) {
+								toUnshift.push ('y = x^3')
+							}
+							if (checkboxesList [5].checked) {
+								toUnshift.push ('y = x^4')
+							}
+
+						res.unshift (toUnshift)
+						console.log (res)
+
+						var data = google.visualization.arrayToDataTable(
+		          res
+		        );
+
+			      var options = {
+			        hAxis: {
+			          title: 'X'
+			        },
+			        vAxis: {
+			          title: 'Y'
+			        },
+			        legend: 'bottom',
+			        width: document.body.clientHeight * 0.65,
+						  height: document.body.clientHeight * 0.65,
+						  title: 'Your function`s graph',
+						  series: {
+		            0: { color: '#e2431e' },
+		            1: { color: 'orange' },
+		            2: { color: '#4285f4' },
+		          }
+			      };
+
+			      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+			      chart.draw(data, options);
+			    }
+
+    </script>
+
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</html>

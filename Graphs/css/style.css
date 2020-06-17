@@ -1,0 +1,117 @@
+
+/*root*/
+
+:root
+{
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+
+	--main-color: #fff;
+	--slider-thumb-color: #3498db;
+}
+
+/*body*/
+
+body
+{
+	background: var(--main-color);
+
+	height: 100vh;
+	width: 100vw;
+
+	margin: 0;
+	padding: 0;
+
+	text-align: center;
+}
+
+body::-webkit-scrollbar
+{
+	width: 0.25rem;
+	height: 0.25rem;
+}
+
+body::-webkit-scrollbar-track
+{
+	background: var(--main-color);
+}
+
+body::-webkit-scrollbar-thumb
+{
+	background: var(--slider-thumb-color);
+}
+
+input[type="text" i]
+{
+  margin: .5rem;
+  width: 7rem;
+}
+
+.btn
+{
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2);
+
+	color: #fff;
+	background-color: #4285f4;
+
+	text-transform: uppercase;
+
+	padding: .5rem;
+
+	border-radius: .2rem;
+
+	user-select: none;
+
+	transition: .075s;
+
+	width: 10rem;
+	margin-left: 1rem;
+	margin-bottom: 2rem;
+
+	transition: .3s;
+}
+
+.btn:hover
+{
+	background-color: #1e1e24;
+
+	transform: scale(1.05);
+}
+
+.checkbox-box
+{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.checkbox-box p
+{
+	margin-left: 1rem;
+}
+
+.checkbox-box input
+{
+	margin-left: 1rem;
+}
+
+.checkboxes
+{
+	margin: 1rem 0rem 1rem .5rem;
+}
+
+.inputs
+{
+	margin-top: 1rem;
+}
+
+.inputs > input
+{
+	padding: .3rem;
+	width: 10rem;
+}
