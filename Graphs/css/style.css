@@ -65,8 +65,9 @@ input[type="text" i]
 	transition: .075s;
 
 	width: 10rem;
-	margin-left: 1rem;
+	margin-left: 2rem;
 	margin-bottom: 2rem;
+	margin-top: 2rem;
 
 	transition: .3s;
 }
@@ -102,7 +103,7 @@ input[type="text" i]
 
 .checkboxes
 {
-	margin: 1rem 0rem 1rem .5rem;
+	margin: 2rem 0rem 2rem .5rem;
 }
 
 .inputs
