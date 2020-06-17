@@ -63,9 +63,6 @@
 
 			function drawBasic() {
 
-			      // data.addColumn('number', 'x')
-			      // data.addColumn('number', 'y = ' + document.body.children [0].value);
-
 			      function returnNumbersArray (x) {
 							let y = eval (document.querySelectorAll ('input[type="text"]') [0].value);
 							return [x, y];
@@ -73,11 +70,12 @@
 
 						let res = [];
 						let checkboxesList = document.querySelectorAll ('input[type="checkbox"]')
+						let inputsList = document.querySelectorAll ('input[type="text"]')
 
-						if (+document.querySelectorAll ('input[type="text"]') [0].value != 0) {
-							for (let i = +document.querySelectorAll ('input[type="text"]') [1].value;
-							 i <= +document.querySelectorAll ('input[type="text"]') [2].value;
-							  i += +document.querySelectorAll ('input[type="text"]') [3].value) {
+						if (+inputsList [0].value != 0 && +inputsList [1].value < +inputsList [2].value) {
+							for (let i = +inputsList [1].value;
+							 i <= +inputsList [2].value;
+							  i += +inputsList [3].value) {
 								let toRes = returnNumbersArray (i)
 
 								if (checkboxesList [0].checked) {
@@ -98,59 +96,57 @@
 								if (checkboxesList [5].checked) {
 									toRes.push (i ** 4)
 								}
-								console.log ('to res:' + toRes)
 								res.push (toRes)
 							}
+
+							let toUnshift = ['x', 'y']
+							if (checkboxesList [0].checked) {
+									toUnshift.push ('y = x')
+								}
+								if (checkboxesList [1].checked) {
+									toUnshift.push ('y = 1 / x')
+								}
+								if (checkboxesList [2].checked) {
+									toUnshift.push ('y = √x')
+								}
+								if (checkboxesList [3].checked) {
+									toUnshift.push ('y = x^2')
+								}
+								if (checkboxesList [4].checked) {
+									toUnshift.push ('y = x^3')
+								}
+								if (checkboxesList [5].checked) {
+									toUnshift.push ('y = x^4')
+								}
+
+							res.unshift (toUnshift)
+
+							var data = google.visualization.arrayToDataTable(
+			          res
+			        );
+
+				      var options = {
+				        hAxis: {
+				          title: 'X'
+				        },
+				        vAxis: {
+				          title: 'Y'
+				        },
+				        legend: 'bottom',
+				        width: document.body.clientHeight * 0.65,
+							  height: document.body.clientHeight * 0.65,
+							  title: 'Your function`s graph',
+							  series: {
+			            0: { color: '#e2431e' },
+			            1: { color: 'orange' },
+			            2: { color: '#4285f4' },
+			          }
+				      };
+
+				      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+				      chart.draw(data, options);
 						}
-
-						let toUnshift = ['x', 'y']
-						if (checkboxesList [0].checked) {
-								toUnshift.push ('y = x')
-							}
-							if (checkboxesList [1].checked) {
-								toUnshift.push ('y = 1 / x')
-							}
-							if (checkboxesList [2].checked) {
-								toUnshift.push ('y = √x')
-							}
-							if (checkboxesList [3].checked) {
-								toUnshift.push ('y = x^2')
-							}
-							if (checkboxesList [4].checked) {
-								toUnshift.push ('y = x^3')
-							}
-							if (checkboxesList [5].checked) {
-								toUnshift.push ('y = x^4')
-							}
-
-						res.unshift (toUnshift)
-						console.log (res)
-
-						var data = google.visualization.arrayToDataTable(
-		          res
-		        );
-
-			      var options = {
-			        hAxis: {
-			          title: 'X'
-			        },
-			        vAxis: {
-			          title: 'Y'
-			        },
-			        legend: 'bottom',
-			        width: document.body.clientHeight * 0.65,
-						  height: document.body.clientHeight * 0.65,
-						  title: 'Your function`s graph',
-						  series: {
-		            0: { color: '#e2431e' },
-		            1: { color: 'orange' },
-		            2: { color: '#4285f4' },
-		          }
-			      };
-
-			      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
-			      chart.draw(data, options);
 			    }
 
     </script>
