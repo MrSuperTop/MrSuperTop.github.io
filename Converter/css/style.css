@@ -49,7 +49,7 @@ body::-webkit-scrollbar-thumb
 	margin: 1rem;
 }
 
-.main-text
+textarea
 {
 	width: 24rem;
 	height: 10rem;
@@ -78,7 +78,7 @@ body::-webkit-scrollbar-thumb
 	color: #000;
 }
 
-.result
+.result, .result-reversed
 {
 	margin-top: 1rem;
 	padding: 1rem;
@@ -97,4 +97,16 @@ body::-webkit-scrollbar-thumb
 	margin-bottom: 1rem;
 
 	font-weight: bolder;
+}
+
+hr
+{
+	height: 1px;
+	width: 100vw;
+
+	background-color: #000 !important;
+
+	border: none;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
 }

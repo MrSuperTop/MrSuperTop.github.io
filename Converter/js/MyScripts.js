@@ -47,3 +47,24 @@ startBtn.addEventListener ('click', function () {
 		resultCheckDisplay ()
 	}
 })
+
+var toReversTextArea = document.querySelector ('.to-revers-text');
+document.querySelector ('.result-reversed').hidden = true;
+
+toReversTextArea.addEventListener ('keyup', function () {
+	splitedString = document.querySelector ('.to-revers-text').value.split ('');
+
+	let reversed = '';
+	for (let i = 0; i < splitedString.length; i++) {
+		reversed += splitedString [splitedString.length - i - 1];
+	}
+
+	let reversedResElement = document.querySelector ('.result-reversed')
+
+	if (reversed != 'undefined' && reversed.length != 0) {
+		reversedResElement.hidden = false;
+		reversedResElement.innerHTML = 'Result: ' + reversed;
+	} else {
+		reversedResElement.hidden = true;
+	}
+})
