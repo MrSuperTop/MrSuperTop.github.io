@@ -1,4 +1,4 @@
-let startBtn = document.getElementsByClassName ('start-btn') [0];
+let startBtn = document.getElementsByClassName ('convert-start-btn') [0];
 let result = document.getElementsByClassName ('result') [0];
 
 let engString = `qwertyuiop[]asdfghjkl;'zxcvbnm,./QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>? 1234567890!#$%^&*()_-+=`;
@@ -66,5 +66,30 @@ toReversTextArea.addEventListener ('keyup', function () {
 		reversedResElement.innerHTML = 'Result: ' + reversed;
 	} else {
 		reversedResElement.hidden = true;
+	}
+})
+
+var toVariateTextArea = document.querySelector ('.to-variate-text');
+document.querySelector ('.result-variated').hidden = true;
+
+document.querySelector ('.variation-start-btn').addEventListener ('click', function () {
+
+	let variatedString = '';
+	for (let i = 0; i < toVariateTextArea.value.length; i++) {
+		let chance = Math.random ().toFixed ();
+		if (chance == 0) {
+			variatedString += toVariateTextArea.value [i].toUpperCase ();
+		} else {
+			variatedString += toVariateTextArea.value [i].toLowerCase ();
+		}
+	}
+
+	let variatedResElement = document.querySelector ('.result-variated')
+
+	if (variatedString != 'undefined' && variatedString.length != 0) {
+		variatedResElement.hidden = false;
+		variatedResElement.innerHTML = 'Result: ' + variatedString;
+	} else {
+		variatedResElement.hidden = true;
 	}
 })
