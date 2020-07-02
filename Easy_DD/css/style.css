@@ -96,3 +96,8 @@ body::-webkit-scrollbar-thumb
 
 	padding: 1.5rem;
 }
+
+.material-icons
+{
+	margin-right: .75rem;
+}
