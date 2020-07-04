@@ -1,0 +1,286 @@
+
+/*root*/
+
+:root
+{
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+
+	--bg-color: #cacaca;
+	--slider-thumb-color: #3498db;
+	--main-color: #fff;
+	--font-color: #000;
+	--transition: .3s;
+}
+
+/*body*/
+
+body
+{
+	background: var(--bg-color);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	height: 100vh;
+	width: 100vw;
+
+	margin: 0;
+	padding: 0;
+}
+
+body::-webkit-scrollbar
+{
+	width: 0.25rem;
+	height: 0.25rem;
+}
+
+body::-webkit-scrollbar-track
+{
+	background: var(--bg-color);
+}
+
+body::-webkit-scrollbar-thumb
+{
+	background: var(--slider-thumb-color);
+}
+
+.collabsible
+{
+	background-color: var(--main-color);
+	-webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+
+	width: 80%;
+	border-radius: .2rem;
+	padding: 0;
+
+	list-style-type: none;
+	color: var(--font-color);
+
+	transition: var(--transition);
+}
+
+.collabsible-header
+{
+	padding: 1rem 1.5rem 1rem 1.5rem;
+
+	border-bottom: 1px solid #ddd;
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+
+	cursor: pointer;
+}
+
+.collabsible li:last-child .collabsible-header
+{
+	border-bottom: none;
+}
+
+.collabsible-body
+{
+	opacity: 0;
+
+	height: 0px;
+	padding: 0rem 1.5rem 0rem 1.5rem;
+
+	overflow: hidden;
+
+	transition: var(--transition);
+}
+
+.collabsible-body-show
+{
+	display: block;
+	opacity: 1;
+
+	height: 0px;
+	height: 100px;
+	border-bottom: 1px solid #ddd;
+
+	padding: 1.5rem;
+
+	color: var(--font-color);
+}
+
+.collabsible li:last-child .collabsible-body-show
+{
+	border-top: 1px solid #ddd;
+	border-bottom: none;
+}
+
+.material-icons
+{
+	margin-right: .75rem;
+
+	color: var(--font-color);
+
+	transition: var(--transition);
+
+	user-select: none;
+}
+
+.drop-down-trigger
+{
+	color: var(--font-color);
+
+	transition: var(--transition);
+
+	width: 2.5rem;
+	height: 2.5rem;
+
+	background-color: var(--main-color);
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: 50%;
+
+	position: absolute;
+	top: 1rem;
+}
+
+.drop-down-content
+{
+	position: absolute;
+	padding: 1rem;
+	margin-top: 2rem;
+	width: auto;
+
+	background-color: var(--main-color);
+
+	color: var(--font-color);
+
+	opacity: 0;
+
+	transition: var(--transition);
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: .3rem;
+}
+
+ul {
+  list-style-type: none;
+
+  padding: 0;
+}
+
+.drop-down-content::before
+{
+	content: '';
+
+	width: 1rem;
+	height: 1rem;
+
+	position: absolute;
+
+	top: -.5rem;
+
+	background-color: var(--main-color);
+
+	transform: rotate(45deg);
+
+	transition: var(--transition);
+}
+
+.drop-down-content-show
+{
+	margin-top: 1rem;
+
+	opacity: 1;
+}
+
+.arrow-fliped
+{
+	transform: rotate(180deg);
+
+	transition: var(--transition);
+}
+
+.fa-chevron-down
+{
+	transition: var(--transition);
+}
+
+.theme-selector
+{
+	width: 2rem;
+	height: 2rem;
+
+	border-radius: .3rem;
+	border: 2px solid #ddd;
+	margin: .3rem;
+
+	transition: var(--transition);
+}
+
+.dark-theme
+{
+	background-color: #1e1e24;
+	border: 2px solid #ddd;
+}
+
+.light-theme
+{
+	background-color: #fff;
+}
+
+.blue-theme
+{
+	background-color: #3498db;
+}
+
+.themes-ul
+{
+	display: flex;
+}
+
+.theme-box
+{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: center;
+	-ms-align-items: center;
+	align-items: center;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
+}
+
+.theme-box b
+{
+	text-transform: capitalize;
+}
+
+.selector-big
+{
+	transform: scale(1.25);
+}

@@ -52,16 +52,69 @@ for (let header of allHeaders) {
 	})
 }
 
-let theme = 'white'
+document.querySelector ('.drop-down-trigger').addEventListener ('click', function () {
+	let target = event.target.closest ('div');
+	let coords = target.getBoundingClientRect ();
+	let dropDownContent = target.parentNode.children [1];
 
-document.querySelector ('.theme-changer-box').addEventListener ('click', function () {
-	if (theme == 'white') {
+	let left = coords.left - dropDownContent.clientWidth / 2 + target.clientWidth / 2 + pageXOffset;
+	let top = coords.top + target.clientHeight + pageYOffset;
+
+	dropDownContent.style.left = left + 'px';
+	dropDownContent.style.top = top + 'px';
+
+	dropDownContent.classList.toggle ('drop-down-content-show');
+	target.children [0].classList.toggle ('arrow-fliped')
+})
+
+function makeSmallSelectors (mainSelector) {
+	let allSelectors = document.querySelectorAll ('.themes-ul li p');
+
+	for (selector of allSelectors) {
+		if (selector.classList.contains ('selector-big') && selector != mainSelector) {
+			selector.classList.remove ('selector-big')
+		}
+	}
+}
+
+let darkSelector = document.querySelector ('.dark-theme');
+let lightSelector = document.querySelector ('.light-theme');
+let blueSelector = document.querySelector ('.blue-theme');
+
+let prevTrans = cssVar ('transition')
+
+cssVar ('transition', '0s');
+let loadedTheme = localStorage.getItem ('theme');
+let activeSelector = document.querySelector ('.' + loadedTheme + '-theme');
+setTheme (loadedTheme, activeSelector)
+cssVar ('transition', prevTrans);
+
+function setTheme (themeName, selector) {
+	if (themeName == 'dark') {
 		cssVar ('main-color', '#1e1e24');
 		cssVar ('font-color', '#fff');
-		theme = 'black'
-	} else {
+		localStorage.setItem ('theme', 'dark');
+	} else if (themeName == 'light') {
 		cssVar ('main-color', '#fff');
 		cssVar ('font-color', '#000');
-		theme = 'white'
+		localStorage.setItem ('theme', 'light');
+	} else {
+		cssVar ('main-color', '#3498db');
+		cssVar ('font-color', '#fff');
+		localStorage.setItem ('theme', 'blue');
 	}
+	selector.classList.add ('selector-big');
+	makeSmallSelectors (selector);
+}
+
+darkSelector.addEventListener ('click', function () {
+	setTheme ('dark', event.target);
 })
+
+lightSelector.addEventListener ('click', function () {
+	setTheme ('light', event.target);
+})
+
+blueSelector.addEventListener ('click', function () {
+	setTheme ('blue', event.target);
+});
