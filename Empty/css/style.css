@@ -1,19 +1,17 @@
-
 /*root*/
 
-:root
-{
+:root {
 	font-size: 16px;
 	font-family: 'Roboto', sans-serif;
 
-	--main-color: #1e1e24;
+	--main-color-dark: #1e1e24;
+	--main-color: #ddd;
 	--slider-thumb-color: #3498db;
 }
 
 /*body*/
 
-body
-{
+body {
 	background: var(--main-color);
 
 	display: flex;
@@ -27,18 +25,15 @@ body
 	padding: 0;
 }
 
-body::-webkit-scrollbar
-{
+body::-webkit-scrollbar {
 	width: 0.25rem;
 	height: 0.25rem;
 }
 
-body::-webkit-scrollbar-track
-{
+body::-webkit-scrollbar-track {
 	background: var(--main-color);
 }
 
-body::-webkit-scrollbar-thumb
-{
+body::-webkit-scrollbar-thumb {
 	background: var(--slider-thumb-color);
 }
