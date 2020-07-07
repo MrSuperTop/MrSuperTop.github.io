@@ -119,7 +119,7 @@ for (td of allTds) {
 			changeWhoesTurn (flag)
 			img.style.opacity = '0';
 			event.target.append (img);
-			setTimeout (() => img.style.cssText = '', cssTransition * 500);
+			setTimeout (() => img.style.cssText = '', cssTransition * 100);
 		}
 
 		winCheck ()
