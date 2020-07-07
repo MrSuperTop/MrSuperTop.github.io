@@ -11,6 +11,13 @@ let xWin = document.querySelector ('.X-win');
 let restart = document.querySelector ('.restart');
 let draw = document.querySelector ('.draw');
 
+var userLang = (navigator.language || navigator.userLanguage).slice(0, 2);
+if (userLang != 'ru') {
+	document.querySelector ('.win-text-X').innerHTML = 'Won!'
+	document.querySelector ('.win-text-O').innerHTML = 'Won!'
+	document.querySelector ('.draw p').innerHTML = 'Draw!'
+}
+
 setTimeout (() => oWin.style.display = 'none', 300);
 setTimeout (() => xWin.style.display = 'none', 300);
 setTimeout (() => draw.style.display = 'none', 300);
