@@ -1,0 +1,48 @@
+/*root*/
+
+:root {
+	font-size: 16px;
+	font-family: 'Montserrat', sans-serif;
+
+	--main-color-dark: #1e1e24;
+	--main-color: #ddd;
+	--slider-thumb-color: #3498db;
+}
+
+/*body*/
+
+body {
+	background: var(--main-color);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	height: 100vh;
+	width: 100vw;
+
+	margin: 0;
+	padding: 0;
+}
+
+body::-webkit-scrollbar {
+	width: 0.25rem;
+	height: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+	background: var(--main-color);
+}
+
+body::-webkit-scrollbar-thumb {
+	background: var(--slider-thumb-color);
+}
+
+.text {
+	font-weight: bolder;
+	font-size: 2rem;
+
+	cursor: pointer;
+
+	user-select: none;
+}
