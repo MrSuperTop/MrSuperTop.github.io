@@ -114,12 +114,21 @@ function isItANumber (char) {
 
 let toCodeTextArea = document.querySelector ('.to-code-text');
 let shiftInput = document.querySelector ('.shift');
+
+if (localStorage.inputValue == undefined) localStorage.inputValue = '3';
+shiftInput.value = localStorage.inputValue;
+
 document.querySelector ('.result-coded').hidden = true;
 
 toCodeTextArea.addEventListener ('input', codeAndDecode);
 shiftInput.addEventListener ('input', codeAndDecode);
 
 function codeAndDecode () {
+	if (+shiftInput.value > 26) shiftInput.value = 26;
+	if (+shiftInput.value < -26) shiftInput.value = -26;
+
+	localStorage.inputValue = shiftInput.value;
+
 	let toWorkWith = toCodeTextArea.value.split ('');
 	let numberToDecode = [];
 
@@ -169,3 +178,28 @@ function codeAndDecode () {
 		codedResElement.hidden = true;
 	}
 }
+
+let iconsArray = document.querySelectorAll ('.counter-minus, .couter-plus');
+
+for (let icon of iconsArray) {
+	icon.addEventListener ('click', function () {
+		icon.classList.add ('icon-small');
+		setTimeout (() => icon.classList.remove ('icon-small'), 150)
+	})
+}
+
+iconsArray [0].addEventListener ('click', function () {
+	shiftInput.value = +shiftInput.value + 1;
+	codeAndDecode ()
+})
+
+iconsArray [1].addEventListener ('click', function () {
+	shiftInput.value = +shiftInput.value - 1;
+	codeAndDecode ()
+})
+
+document.querySelector ('.reset-btn').addEventListener ('click', function () {
+	shiftInput.value = 0;
+	toCodeTextArea.value = '';
+	codeAndDecode ()
+})

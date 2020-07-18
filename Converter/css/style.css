@@ -55,9 +55,11 @@ textarea
 	height: 5rem;
 
 	text-align: center;
+
+	font-size: 1rem;
 }
 
-.convert-start-btn, .variation-start-btn
+.convert-start-btn, .variation-start-btn, .reset-btn
 {
 	width: 7rem;
 
@@ -76,12 +78,24 @@ textarea
 	border: 1px solid #3498db;
 }
 
+.reset-btn {
+	width: 2.5rem;
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+}
+
 .variation-start-btn
 {
 	margin-top: 1rem;
 }
 
-.convert-start-btn:hover, .variation-start-btn:hover
+.convert-start-btn:hover, .variation-start-btn:hover, .reset-btn:hover
 {
 	background-color: transparent;
 	color: #000;
@@ -165,4 +179,45 @@ tr
 .shift
 {
 	margin-top: 1rem;
+}
+
+.counter {
+	margin: 1rem;
+	border-radius: .3rem;
+
+	font-size: 2rem;
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+
+	background-color: #3498db;
+
+	transform: scale(1);
+}
+
+.counter-minus, .couter-plus {
+	color: #fff;
+	margin: .5rem 1rem .5rem 1rem;
+
+	transition: .15s;
+}
+
+.icon-small {
+	transform: scale(.95);
+}
+
+.shift {
+	padding: .25rem;
+
+	font-size: 1.15rem;
+
+	width: 5rem;
+
+	text-align: center;
 }
