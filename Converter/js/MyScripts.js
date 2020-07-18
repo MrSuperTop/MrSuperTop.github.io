@@ -116,7 +116,10 @@ let toCodeTextArea = document.querySelector ('.to-code-text');
 let shiftInput = document.querySelector ('.shift');
 document.querySelector ('.result-coded').hidden = true;
 
-toCodeTextArea.addEventListener ('input', function () {
+toCodeTextArea.addEventListener ('input', codeAndDecode);
+shiftInput.addEventListener ('input', codeAndDecode);
+
+function codeAndDecode () {
 	let toWorkWith = toCodeTextArea.value.split ('');
 	let numberToDecode = [];
 
@@ -160,9 +163,9 @@ toCodeTextArea.addEventListener ('input', function () {
 			for (let item of result.slice (0, 3)) {
 				if (isItANumber (item) || item == '-') delete result [result.indexOf (item)]
 			}
-			codedResElement.innerHTML = result.join ('');
+			codedResElement.innerHTML = 'Result: ' + result.join ('');
 		}
 	} else {
 		codedResElement.hidden = true;
 	}
-})
+}
