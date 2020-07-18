@@ -51,14 +51,18 @@ body::-webkit-scrollbar-thumb
 
 textarea
 {
-	width: 24rem;
-	height: 10rem;
+	width: 12rem;
+	height: 5rem;
 
 	text-align: center;
 }
 
 .convert-start-btn, .variation-start-btn
 {
+	width: 7rem;
+
+	text-align: center;
+
 	background-color: #3498db;
 	color: #fff;
 
@@ -83,7 +87,7 @@ textarea
 	color: #000;
 }
 
-.result, .result-reversed, .result-variated
+.result, .result-reversed, .result-variated, .result-coded
 {
 	margin-top: 1rem;
 	padding: 1rem;
@@ -94,7 +98,9 @@ textarea
 
 	font-weight: bolder;
 
-	min-width: 24rem;
+	min-width: 6rem;
+	max-width: 12rem;
+	height: auto;
 }
 
 .deskr
@@ -114,4 +120,49 @@ hr
 	border: none;
 	margin-top: 2rem;
 	margin-bottom: 1rem;
+}
+
+.first-row
+{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+}
+
+td
+{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
+
+	margin: 1rem;
+}
+
+tr
+{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.shift
+{
+	margin-top: 1rem;
 }

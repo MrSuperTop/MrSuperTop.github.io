@@ -19,37 +19,52 @@
 
 </head>
 <body>
+	<table>
+		<tr>
+			<td>
+				<div class="deskr">It is made to convert 'Ghbdtn' to 'Привет'.</div>
 
-	<div class="deskr">It is made to convert 'Ghbdtn' to 'Привет'.</div>
+				<textarea type="textarea" name="" class="main-text" placeholder="String to convert!"></textarea>
 
-	<textarea type="textarea" name="" class="main-text" placeholder="String to convert!"></textarea>
+				<select class="selecting-leng" size="3">
+			    <option disabled>Select language of the string</option>
+			    <option value="eng">eng</option>
+			    <option value="ru">ru</option>
+			  </select>
+				<div class="convert-start-btn">Convert!</div>
 
-	<select class="selecting-leng" size="3">
-    <option disabled>Select language of the string</option>
-    <option value="eng">eng</option>
-    <option value="ru">ru</option>
-  </select>
-	<div class="convert-start-btn">Convert!</div>
+				<div class="result"></div>
+			</td>
+			<td>
+				<div class="deskr">It is made to convert 'Hello' to 'olleH'.</div>
 
-	<div class="result"></div>
+				<textarea type="textarea" name="" class="to-revers-text" placeholder="String to reverse!"></textarea>
 
-	<hr>
+				<div class="result-reversed"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="deskr">It is made to convert 'Hello' to 'hElLo'.</div>
 
-	<div class="deskr">It is made to convert 'Hello' to 'olleH'.</div>
+				<textarea type="textarea" name="" class="to-variate-text" placeholder="String to variate!"></textarea>
 
-	<textarea type="textarea" name="" class="to-revers-text" placeholder="String to reverse!"></textarea>
+				<div class="variation-start-btn">Convert!</div>
 
-	<div class="result-reversed"></div>
+				<div class="result-variated"></div>
+			</td>
+			<td>
+				<div class="deskr">It is made to convert 'Hello' to 'Ebiil'.</div>
 
-	<hr>
+				<textarea type="textarea" name="" class="to-code-text" placeholder="String to code or decode!"></textarea>
 
-	<div class="deskr">It is made to convert 'Hello' to 'hElLo'.</div>
+				<input type="text" placeholder="Your shift." class="shift">
 
-	<textarea type="textarea" name="" class="to-variate-text" placeholder="String to variate!"></textarea>
+				<div class="result-coded"></div>
+			</td>
+		</tr>
+	</table>
 
-	<div class="variation-start-btn">Convert!</div>
-
-	<div class="result-variated"></div>
 
 
 	<!-- ---------------- My js ---------------- -->
