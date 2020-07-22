@@ -4,19 +4,39 @@
 	font-size: 16px;
 	font-family: 'Montserrat', sans-serif;
 
-	--main-color-dark: #1e1e24;
-	--main-color: #ddd;
+	/* ------- all vars ------- */
+
+	--bgc-main: #ddd;
+	--bgc-secondary: #1e1e24;
 	--slider-thumb-color: #3498db;
+
+	--fc-main: #000;
+	--fc-secondary: #fff;
+
+	--transition-main: .3s;
+
+	--bdrs-main: .3rem;
 }
 
 /*body*/
 
 body {
-	background: var(--main-color);
+	background: var(--bgc-main);
+	color: var(--fc-main);
 
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
 	display: flex;
-	justify-content: center;
+	-ms-align-items: center;
 	align-items: center;
+	justify-content: center;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
 
 	height: 100vh;
 	width: 100vw;
@@ -36,4 +56,8 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
 	background: var(--slider-thumb-color);
+}
+
+pre[class*="language-"] {
+	border-radius: var(--bdrs-main);
 }

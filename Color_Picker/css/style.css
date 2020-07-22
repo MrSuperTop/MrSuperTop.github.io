@@ -1,0 +1,150 @@
+/*root*/
+
+:root {
+	font-size: 16px;
+	font-family: 'Montserrat', sans-serif;
+
+	/* ------- all vars ------- */
+
+	--bgc-main: #ddd;
+	--bgc-secondary: #1e1e24;
+	--slider-thumb-color: #3498db;
+
+	--fc-main: #000;
+	--fc-secondary: #fff;
+
+	--transition-main: .3s;
+
+	--bdrs-main: .3rem;
+
+	--box-size: 8rem;
+}
+
+/*body*/
+
+body {
+	background: var(--bgc-main);
+	color: var(--fc-main);
+
+	transition: var(--transition-main);
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+
+	height: 100vh;
+	width: 100vw;
+
+	margin: 0;
+	padding: 0;
+}
+
+body::-webkit-scrollbar {
+	width: 0.25rem;
+	height: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+	background: var(--main-color);
+}
+
+body::-webkit-scrollbar-thumb {
+	background: var(--slider-thumb-color);
+}
+
+pre[class*="language-"] {
+	border-radius: var(--bdrs-main);
+}
+
+.color-box {
+	width: var(--box-size);
+	height: var(--box-size);
+
+	transition: all .15s ease-in-out;
+
+	transform: scale(1);
+}
+
+.small-box {
+	transform: scale(.8);
+}
+
+.color-row {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+}
+
+nav {
+	position: absolute;
+
+	top: 0;
+
+	background-color: #4285f4;
+
+	width: 100%;
+	height: 5rem;
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+}
+
+.selector {
+	margin: 1rem;
+
+	text-transform: uppercase;
+
+	font-weight: bolder;
+
+	transition: var(--transition-main);
+}
+
+.big-font
+{
+	font-size: 1.5rem;
+}
+
+.pallet-1, .pallet-2 {
+	transition: var(--transition-main);
+}
+
+.color-row {
+	width: 100%;
+}
+
+.last-selected {
+	position: absolute;
+	top: 6rem;
+
+	font-size: 1.5rem;
+	font-weight: bolder;
+	color: var(--bgc-main);
+
+	background-color: var(--bgc-main);
+	padding: 1rem;
+	border-radius: var(--bdrs-main);
+
+	transition: var(--transition-main);
+
+	user-select: none;
+}
