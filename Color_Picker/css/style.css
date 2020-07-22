@@ -92,6 +92,8 @@ pre[class*="language-"] {
 nav {
 	position: absolute;
 
+	user-select: none;
+
 	top: 0;
 
 	background-color: #4285f4;
