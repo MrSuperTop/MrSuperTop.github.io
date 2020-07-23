@@ -86,7 +86,7 @@ pre[class*="language-"] {
 	display: flex;
 	-ms-align-items: center;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
 }
 
 nav {
@@ -126,7 +126,8 @@ nav {
 	font-size: 1.5rem;
 }
 
-.pallet-1, .pallet-2 {
+.pallet-1,
+.pallet-2 {
 	transition: var(--transition-main);
 }
 

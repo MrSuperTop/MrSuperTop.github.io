@@ -14,7 +14,9 @@ function copyColor (event) {
 	document.body.style.backgroundColor = target.dataset.color;
 	setTimeout (() => document.body.style.backgroundColor = 'var(--bgc-main)', 600);
 
-	navigator.clipboard.writeText(target.dataset.color);
+	target.parentNode.parentNode.style.backgroundColor = target.dataset.color;
+
+	navigator.clipboard.writeText (target.dataset.color);
 }
 
 function cssVar (name, value) {
@@ -40,13 +42,16 @@ pallet2.style.display = 'none';
 selector1.addEventListener ('click', () => {
 	setTimeout (() => pallet1.style.display = 'block', 300)
 
-	cssVar ('box-size', '8rem')
+	cssVar ('box-size', '1rem')
 
 	selector1.classList.add ('big-font');
 	selector2.classList.remove ('big-font');
 	pallet2.style.opacity = 0;
 
-	setTimeout (() => pallet2.style.display = 'none', 300)
+	setTimeout (() => {
+		pallet2.style.display = 'none'
+		cssVar ('box-size', '8rem')
+	}, 300)
 	setTimeout (() => pallet1.style.opacity = 1, 400)
 })
 
