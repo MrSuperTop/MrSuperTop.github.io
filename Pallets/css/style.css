@@ -227,3 +227,14 @@ nav {
 .color-type-menu p {
 	font-weight: bolder;
 }
+
+.fa-chevron-down
+{
+	transform: rotate(0deg);
+
+	transition: calc(var(--transition-main) * 1.5);
+}
+
+.arrow-fliped {
+	transform: rotate(180deg);
+}

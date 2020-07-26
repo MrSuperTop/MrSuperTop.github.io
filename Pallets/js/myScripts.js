@@ -143,6 +143,7 @@ document.querySelector ('.color-type-menu').style.display = 'none';
 
 function toggleMenu (event) {
 	let target = event.target.closest ('div');
+	target.firstChild.classList.toggle ('arrow-fliped')
 
 	let menuWithColors = target.nextSibling.nextSibling;
 	let cssStyles = window.getComputedStyle (menuWithColors);
