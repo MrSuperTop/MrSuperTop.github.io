@@ -1,6 +1,8 @@
 let colorBoxes = document.querySelectorAll ('.color-box');
+let selectedColorType;
 
-let selectedColorType = '#ffffff';
+if (localStorage.colorType == undefined) { selectedColorType = '#ffffff' }
+else { selectedColorType = localStorage.colorType }
 
 function hexToRGB (h) {
   let r = 0, g = 0, b = 0;
@@ -147,7 +149,6 @@ function toggleMenu (event) {
 
 	let menuWithColors = target.nextSibling.nextSibling;
 	let cssStyles = window.getComputedStyle (menuWithColors);
-	console.log (cssStyles.getPropertyValue ('display'))
 
 	if (cssStyles.getPropertyValue ('display') == 'none') menuWithColors.style.display = 'block';
 	else if (cssStyles.getPropertyValue ('display') == 'block') setTimeout (() => menuWithColors.style.display = 'none', 300);
@@ -164,6 +165,8 @@ for (let menuItem of menuItems) {
 		else if (menuItems.indexOf (menuItem) == 1) selectedColorType = event.target.innerHTML;
 		else if (menuItems.indexOf (menuItem) == 2) selectedColorType = event.target.innerHTML;
 		else selectedColorType = event.target.innerHTML;
+
+		localStorage.colorType = selectedColorType;
 
 		let toTheFunc = {
 			target: menuItem.parentNode.previousSibling.previousSibling,
