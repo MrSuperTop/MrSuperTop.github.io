@@ -203,3 +203,123 @@ document.querySelector ('.reset-btn').addEventListener ('click', function () {
 	toCodeTextArea.value = '';
 	codeAndDecode ()
 })
+
+let allCopyIcons = document.querySelectorAll ('.copy-btn');
+let allResults = document.querySelectorAll ('div[class*="result"]');
+let allPasteIcons = document.querySelectorAll ('.paste-btn');
+let allTextAreas = document.querySelectorAll ('.main-text, textarea[class*="to-"]');
+
+function copyOnButton (event) {
+	let target = event.target.closest ('div');
+
+	target.firstChild.classList.add ('small-icon');
+	setTimeout (() => target.firstChild.classList.remove ('small-icon'), 150)
+
+	createToast ({
+		html: 'Copied!',
+		removeDelay: 1000,
+		toastRounding: '.3rem',
+		inTime: 300,
+		outTime: 300,
+		callBack: function () {},
+	})
+
+	let toCopy = allResults [Array.from (allCopyIcons).indexOf (target)].innerHTML.slice (8);
+
+	toCopy == '' ? navigator.clipboard.writeText ('') : navigator.clipboard.writeText (toCopy);
+}
+
+for (let copyIcon of allCopyIcons) {
+	copyIcon.addEventListener ('click', copyOnButton);
+}
+
+function pasteOnButton (event) {
+	let target = event.target.closest ('div');
+
+	target.firstChild.classList.add ('small-icon');
+	setTimeout (() => target.firstChild.classList.remove ('small-icon'), 150)
+
+	createToast ({
+		html: 'Pasted!',
+		removeDelay: 1000,
+		toastRounding: '.3rem',
+		inTime: 300,
+		outTime: 300,
+		callBack: function () {},
+	})
+
+	navigator.clipboard.readText()
+	  .then(text => {
+	    allTextAreas [Array.from (allPasteIcons).indexOf (target)].innerHTML = text;
+	  })
+	  .catch(err => {
+	    console.error(err);
+	  });
+
+}
+
+for (let pasteIcon of allPasteIcons) {
+	pasteIcon.addEventListener ('click', pasteOnButton);
+}
+
+// Toasts part
+
+var toasts = [];
+var toastContainer;
+
+function createToast (settings) {
+
+	let toast = document.createElement ('div');
+	toast.classList.add ('toast');
+
+	toasts.push (toast);
+
+		setTimeout (() => {
+			toast.style.cssText += 'transition: ' + String (settings.outTime / 1000) + 's;' + 'margin-top: -' + toast.offsetHeight + 'px;';
+			hideToastWithAnimation (toasts [0], settings.outTime, settings.callBack)
+			toasts.shift ()
+		}, settings.removeDelay);
+
+	if (document.querySelectorAll ('.toast-container').length == 0) {
+		toastContainer = document.createElement ('div');
+		toastContainer.classList.add ('toast-container');
+		document.body.append (toastContainer);
+	}
+
+	toast.style.cssText = 'transition: ' + String (settings.inTime / 1000) + 's;';
+
+	showToastWithAnimation (toast, toastContainer, settings.inTime);
+
+	if (settings.toastRounding != undefined) {
+		toast.style.borderRadius = settings.toastRounding;
+	} else {
+		toast.style.borderRadius = '.5rem';
+	}
+
+	let toastTextSpan = document.createElement ('span');
+	toastTextSpan.innerHTML = settings.html;
+	toast.append (toastTextSpan);
+
+	if (settings.adtionalButtonText != undefined) {
+		let adtionalBtnElement = document.createElement ('div');
+		adtionalBtnElement.innerHTML = settings.adtionalButtonText
+		toast.append (adtionalBtnElement);
+	}
+}
+
+function showToastWithAnimation (toastToShow, whereToAdd, animationInTime) {
+	whereToAdd.append (toastToShow);
+	toastToShow.classList.add ('toast-moved-down');
+	setTimeout (() => toastToShow.classList.remove ('toast-moved-down'), 1)
+}
+
+function hideToastWithAnimation (toastToHide, animationOutTime, callBack) {
+	toastToHide.classList.add ('toast-moved-up');
+	setTimeout (() => {
+		toastToHide.remove ()
+		callBack ()
+	}, animationOutTime);
+}
+
+
+// Toasts part
