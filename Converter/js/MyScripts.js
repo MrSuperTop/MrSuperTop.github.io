@@ -51,7 +51,9 @@ startBtn.addEventListener ('click', function () {
 var toReversTextArea = document.querySelector ('.to-revers-text');
 document.querySelector ('.result-reversed').hidden = true;
 
-toReversTextArea.addEventListener ('input', function () {
+toReversTextArea.addEventListener ('input', reverseText)
+
+function reverseText ()  {
 	splitedString = document.querySelector ('.to-revers-text').value.split ('');
 
 	let reversed = '';
@@ -67,7 +69,7 @@ toReversTextArea.addEventListener ('input', function () {
 	} else {
 		reversedResElement.hidden = true;
 	}
-})
+}
 
 var toVariateTextArea = document.querySelector ('.to-variate-text');
 document.querySelector ('.result-variated').hidden = true;
@@ -251,6 +253,8 @@ function pasteOnButton (event) {
 	navigator.clipboard.readText()
 	  .then(text => {
 	    allTextAreas [Array.from (allPasteIcons).indexOf (target)].innerHTML = text;
+	    codeAndDecode ()
+	    reverseText ()
 	  })
 	  .catch(err => {
 	    console.error(err);
@@ -320,6 +324,5 @@ function hideToastWithAnimation (toastToHide, animationOutTime, callBack) {
 		callBack ()
 	}, animationOutTime);
 }
-
 
 // Toasts part
