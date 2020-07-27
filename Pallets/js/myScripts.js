@@ -13,7 +13,7 @@ function hexToRGB (h) {
     b = "0x" + h[5] + h[6];
 }
 
-  return "rgb("+ +r + ", " + +g + ", " + +b + ")";
+  return +r + ", " + +g + ", " + +b;
 }
 
 function hexToHSL(H) {
@@ -58,7 +58,7 @@ function hexToHSL(H) {
   s = +(s * 100).toFixed(1);
   l = +(l * 100).toFixed(1);
 
-  return "hsl(" + h + ", " + s + "%, " + l + "%)";
+  return h + ", " + s + "%, " + l + "%";
 }
 
 function copyColor (event) {
@@ -67,22 +67,34 @@ function copyColor (event) {
 	let colorToCopy = target.dataset.color;
 
 	if (selectedColorType == 'ffffff') colorToCopy = colorToCopy.slice (1);
-	else if (selectedColorType == 'rgb(255, 255, 255)') colorToCopy = hexToRGB (colorToCopy);
-	else if (selectedColorType == 'hsl(0, 0%, 100%)') colorToCopy = hexToHSL (colorToCopy);
+	else if (selectedColorType == '#FFFFFF') colorToCopy = colorToCopy.toUpperCase ();
+	else if (selectedColorType == 'FFFFFF') colorToCopy = colorToCopy.slice (1).toUpperCase ();
+	else if (selectedColorType == 'rgb(255, 255, 255)') colorToCopy = 'rgb(' + hexToRGB (colorToCopy) + ')';
+	else if (selectedColorType == 'hsl(0, 0%, 100%)') colorToCopy = "hsl(" + hexToHSL (colorToCopy) + ')';
+	else if (selectedColorType == '255, 255, 255') colorToCopy = hexToRGB (colorToCopy)
+	else if (selectedColorType == '0, 0%, 100%') colorToCopy = hexToHSL (colorToCopy);
 
 	target.classList.add ('small-box');
 	setTimeout(() => target.classList.remove ('small-box'), 150);
 
 	lastSelected.innerHTML = `${colorToCopy} copied!`
 
-	if (colorToCopy [0] != '#' && colorToCopy [0] != 'r' && colorToCopy [0] != 'h') {
-		lastSelected.style.color = '#' + colorToCopy;
-		document.body.style.backgroundColor = '#' + colorToCopy;
-		target.parentNode.parentNode.style.backgroundColor = '#' + colorToCopy;
+	function setColor (before = '', after = '') {
+		lastSelected.style.color = before + colorToCopy + after;
+		document.body.style.backgroundColor = before + colorToCopy + after;
+		target.parentNode.parentNode.style.backgroundColor = before + colorToCopy + after;
+	}
+
+	if (colorToCopy [0] != '#' && colorToCopy.length == 6) {
+		setColor ('#')
+	} else if (colorToCopy.length >= 7 && colorToCopy [0] != 'r' && colorToCopy [0] != 'h' && colorToCopy [0] != '#') {
+		if (!colorToCopy.split ('').includes ('%')) {
+			setColor ('rgb(', ')')
+		} else {
+			setColor ('hsl(', ')')
+		}
 	} else {
-		lastSelected.style.color = colorToCopy;
-		document.body.style.backgroundColor = colorToCopy;
-		target.parentNode.parentNode.style.backgroundColor = colorToCopy;
+		setColor ()
 	}
 
 	setTimeout (() => lastSelected.style.color = 'var(--bgc-main)', 600);
@@ -161,11 +173,7 @@ menuItems = Array.from (menuItems)
 
 for (let menuItem of menuItems) {
 	menuItem.addEventListener ('click', function () {
-		if (menuItems.indexOf (menuItem) == 0) selectedColorType = event.target.innerHTML;
-		else if (menuItems.indexOf (menuItem) == 1) selectedColorType = event.target.innerHTML;
-		else if (menuItems.indexOf (menuItem) == 2) selectedColorType = event.target.innerHTML;
-		else selectedColorType = event.target.innerHTML;
-
+		selectedColorType = event.target.innerHTML;
 		localStorage.colorType = selectedColorType;
 
 		let toTheFunc = {
