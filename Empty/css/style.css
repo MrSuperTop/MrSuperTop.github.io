@@ -1,4 +1,4 @@
-/*root*/
+/* ---------------- root ----------------  */
 
 :root {
 	font-size: 16px;
@@ -18,7 +18,7 @@
 	--bdrs-main: .3rem;
 }
 
-/*body*/
+/* ---------------- body ---------------- */
 
 body {
 	background: var(--bgc-main);
@@ -58,6 +58,34 @@ body::-webkit-scrollbar-thumb {
 	background: var(--slider-thumb-color);
 }
 
-pre[class*="language-"] {
+/* ---------------- presseble-btn ----------------  */
+
+.presseble-btn {
+	padding: 1rem;
+	margin-top: 1rem;
+
+	background-color: var(--bgc-secondary);
 	border-radius: var(--bdrs-main);
+
+	font-weight: bolder;
+	color: #fff;
+	font-size: 1.25rem;
+
+	transition: all calc(var(--transition-main) / 2) 0s ease-in-out;
+	will-change: transform;
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+
+	user-select: none;
+}
+
+.small-btn {
+	transform: scale(.9);
 }

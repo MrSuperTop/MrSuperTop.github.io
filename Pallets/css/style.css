@@ -69,7 +69,7 @@ pre[class*="language-"] {
 	width: var(--box-size);
 	height: var(--box-size);
 
-	transition: all .15s ease-in-out;
+	transition: all calc(var(--transition-main) / 2) ease-in-out;
 
 	transform: scale(1);
 }
@@ -121,8 +121,7 @@ nav {
 	transition: var(--transition-main);
 }
 
-.big-font
-{
+.big-font {
 	font-size: 1.5rem;
 }
 
@@ -155,7 +154,7 @@ nav {
 .menu-trigger {
 	font-size: 1.25rem;
 
-	background-color: #263238;
+	background-color: var(--bgc-secondary);
 
 	padding: 1rem;
 
@@ -172,6 +171,8 @@ nav {
 	height: 1rem;
 
 	border-radius: var(--bdrs-main);
+
+	transition: var(--transition-main);
 }
 
 .menu {
@@ -185,7 +186,7 @@ nav {
 }
 
 .color-type-menu {
-	background-color: #263238;
+	background-color: var(--bgc-secondary);
 
 	padding: .25rem 1rem 1rem 1rem;
 	margin-top: 2rem;
@@ -237,4 +238,36 @@ nav {
 
 .arrow-fliped {
 	transform: rotate(180deg);
+}
+
+.theme-toggler {
+	font-size: 1.5rem;
+	color: var(--bgc-main);
+
+	background-color: var(--bgc-secondary);
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+
+	width: 1rem;
+	height: 1rem;
+	padding: 1rem;
+	border-radius: var(--bdrs-main);
+	position: absolute;
+	top: 6rem;
+	right: 1rem;
+
+	transition: var(--transition-main);
+}
+
+.theme-toggler .far {
+	transition: var(--transition-main);
+
+	opacity: 1;
 }

@@ -1,6 +1,9 @@
 let colorBoxes = document.querySelectorAll ('.color-box');
 let selectedColorType;
 
+let transition = cssVar ('transition-main');
+transition = +transition.slice (0, transition.length - 1) * 1000;
+
 if (localStorage.colorType == undefined) { selectedColorType = '#ffffff' }
 else { selectedColorType = localStorage.colorType }
 
@@ -61,10 +64,44 @@ function hexToHSL(H) {
   return h + ", " + s + "%, " + l + "%";
 }
 
+function luminanace(r, g, b) {
+  let array = [r, g, b].map (function (value) {
+    value /= 255;
+    return value <= 0.03928 ? value / 12.92 : Math.pow ((value + 0.055) / 1.055, 2.4);
+	});
+
+  return array [0] * 0.2126 + array [1] * 0.7152 + array [2] * 0.0722;
+}
+
+function contrastCoefGet (color1, color2) {
+	let r = 0, g = 0, b = 0;
+
+  r = "0x" + color1[1] + color1[2];
+  g = "0x" + color1[3] + color1[4];
+  b = "0x" + color1[5] + color1[6];
+  let rgb1 = [+r, +g, +b]
+
+  r = "0x" + color2[1] + color2[2];
+  g = "0x" + color2[3] + color2[4];
+  b = "0x" + color2[5] + color2[6];
+  let rgb2 = [+r, +g, +b]
+
+  let lum1 = luminanace(rgb1[0], rgb1[1], rgb1[2]);
+  let lum2 = luminanace(rgb2[0], rgb2[1], rgb2[2]);
+
+  return +((lum1 + 0.05) / (lum2 + 0.05)).toFixed (2);
+}
+
 function copyColor (event) {
 	let target = event.target.closest ('div');
 	let lastSelected = document.querySelector ('.last-selected');
 	let colorToCopy = target.dataset.color;
+
+	if (contrastCoefGet ('#ffffff', target.dataset.color) <= 4.5) {
+		lastSelected.style.backgroundColor = '#000';
+	} else {
+		lastSelected.style.backgroundColor = '#fff';
+	}
 
 	if (selectedColorType == 'ffffff') colorToCopy = colorToCopy.slice (1);
 	else if (selectedColorType == '#FFFFFF') colorToCopy = colorToCopy.toUpperCase ();
@@ -75,7 +112,7 @@ function copyColor (event) {
 	else if (selectedColorType == '0, 0%, 100%') colorToCopy = hexToHSL (colorToCopy);
 
 	target.classList.add ('small-box');
-	setTimeout(() => target.classList.remove ('small-box'), 150);
+	setTimeout(() => target.classList.remove ('small-box'), transition / 2);
 
 	lastSelected.innerHTML = `${colorToCopy} copied!`
 
@@ -97,8 +134,11 @@ function copyColor (event) {
 		setColor ()
 	}
 
-	setTimeout (() => lastSelected.style.color = 'var(--bgc-main)', 600);
-	setTimeout (() => document.body.style.backgroundColor = 'var(--bgc-main)', 600);
+	setTimeout (() => {
+		lastSelected.style.color = 'var(--bgc-main)';
+		lastSelected.style.backgroundColor = 'var(--bgc-main)';
+		document.body.style.backgroundColor = 'var(--bgc-main)';
+	}, 600);
 
 	navigator.clipboard.writeText (colorToCopy);
 }
@@ -123,8 +163,9 @@ let pallet2 = document.querySelector ('.pallet-2');
 pallet2.style.opacity = 0;
 pallet2.style.display = 'none';
 
-selector1.addEventListener ('click', () => {
-	setTimeout (() => pallet1.style.display = 'block', 300)
+function switchToPallet1 () {
+	localStorage.selectedPallet = 'pallet1';
+	setTimeout (() => pallet1.style.display = 'block', transition)
 
 	cssVar ('box-size', '1rem')
 
@@ -135,12 +176,13 @@ selector1.addEventListener ('click', () => {
 	setTimeout (() => {
 		pallet2.style.display = 'none'
 		cssVar ('box-size', '8rem')
-	}, 300)
-	setTimeout (() => pallet1.style.opacity = 1, 400)
-})
+	}, transition)
+	setTimeout (() => pallet1.style.opacity = 1, transition + 100)
+}
 
-selector2.addEventListener ('click', () => {
-	setTimeout (() => pallet2.style.display = 'block', 300)
+function switchToPallet2 () {
+	localStorage.selectedPallet = 'pallet2';
+	setTimeout (() => pallet2.style.display = 'block', transition)
 
 	cssVar ('box-size', '2rem')
 
@@ -148,12 +190,29 @@ selector2.addEventListener ('click', () => {
 	selector1.classList.remove ('big-font');
 	pallet1.style.opacity = 0;
 
-	setTimeout (() => pallet1.style.display = 'none', 300)
-	setTimeout (() => pallet2.style.opacity = 1, 400)
-})
+	setTimeout (() => pallet1.style.display = 'none', transition)
+	setTimeout (() => pallet2.style.opacity = 1, transition + 100)
+}
 
-document.querySelector ('.menu-trigger').addEventListener ('click', toggleMenu);
-document.querySelector ('.color-type-menu').style.display = 'none';
+selector1.addEventListener ('click', switchToPallet1)
+selector2.addEventListener ('click', switchToPallet2)
+
+let prevValue = cssVar ('transition-main');
+cssVar ('transition-main', '0s')
+
+if (localStorage.selectedPallet == 'pallet2') {
+	switchToPallet2 ();
+} else {
+	document.querySelector ('.selector-1').classList.add ('big-font')
+}
+
+setTimeout (() => cssVar ('transition-main', prevValue), 5)
+
+let colorTypeMenu = document.querySelector ('.color-type-menu');
+let menuTrigger = document.querySelector ('.menu-trigger');
+
+menuTrigger.addEventListener ('click', toggleMenu);
+colorTypeMenu.style.display = 'none';
 
 function toggleMenu (event) {
 	let target = event.target.closest ('div');
@@ -172,9 +231,21 @@ let menuItems = document.querySelectorAll ('.menu-item');
 menuItems = Array.from (menuItems)
 
 for (let menuItem of menuItems) {
+	if (menuItem.innerHTML == localStorage.colorType) {
+		menuItem.style.cssText = 'font-size: 1.25rem; color: #f4b400;';
+		break;
+	}
+}
+
+for (let menuItem of menuItems) {
 	menuItem.addEventListener ('click', function () {
 		selectedColorType = event.target.innerHTML;
 		localStorage.colorType = selectedColorType;
+		menuItem.style.cssText = 'font-size: 1.25rem; color: #f4b400;';
+
+		for (let toRemoveStyles of menuItems) {
+			if (toRemoveStyles != menuItem) toRemoveStyles.style.cssText = '';
+		}
 
 		let toTheFunc = {
 			target: menuItem.parentNode.previousSibling.previousSibling,
@@ -183,3 +254,45 @@ for (let menuItem of menuItems) {
 		toggleMenu (toTheFunc)
 	})
 }
+
+let themeToggler = document.querySelector ('.theme-toggler');
+
+function toggleTheme (event) {
+	let target = event.target.closest ('div');
+
+	target.firstChild.style.opacity = 0;
+
+	setTimeout (() => {
+		target.firstChild.classList.toggle ('fa-lightbulb');
+		target.firstChild.classList.toggle ('fa-moon');
+		target.firstChild.style.opacity = 1;
+	}, transition)
+
+	cssVar ('bgc-main', cssVar ('bgc-secondary'));
+	if (cssVar ('bgc-main') == '#ddd') {
+		cssVar ('bgc-secondary', '#1e1e24');
+	} else {
+		cssVar ('bgc-secondary', '#ddd');
+	}
+}
+
+themeToggler.addEventListener ('click', toggleTheme);
+
+document.body.addEventListener('click', function () {
+	let target;
+
+	if (event.target == document.body) {
+		target = document.body;
+	} else if (event.target == document.querySelector ('nav')) {
+		target = document.querySelector ('nav')
+	}	else {
+		target = event.target.closest ('div')
+	}
+
+	let toFunc = {
+		target: menuTrigger
+	};
+
+	if (target != menuTrigger && target != colorTypeMenu && target.parentNode != colorTypeMenu
+	&& colorTypeMenu.classList.contains ('menu-shown')) toggleMenu (toFunc);
+})
