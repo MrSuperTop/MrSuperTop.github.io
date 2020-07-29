@@ -89,3 +89,9 @@ body::-webkit-scrollbar-thumb {
 .small-btn {
 	transform: scale(.9);
 }
+
+/* ---------------- mobile styles ---------------- */
+
+@media only screen and (min-width : 0px) and (max-width : 580px) {
+	/* от max-width до min-width (размер экрана) */
+}
