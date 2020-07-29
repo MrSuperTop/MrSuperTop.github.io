@@ -1,3 +1,23 @@
+let prevValue = cssVar ('transition-main');
+let themeToggler = document.querySelector ('.theme-toggler');
+cssVar ('transition-main', '0s')
+
+console.log (localStorage.theme)
+
+if (localStorage.theme == 'dark') {
+	cssVar ('bgc-main', '#1e1e24')
+	cssVar ('bgc-secondary', '#ddd')
+	themeToggler.firstChild.classList = 'far fa-moon';
+	localStorage.theme = 'dark';
+} else {
+	cssVar ('bgc-main', '#ddd')
+	cssVar ('bgc-secondary', '#000')
+	themeToggler.firstChild.classList = 'far fa-lightbulb';
+	localStorage.theme = 'light';
+}
+
+cssVar ('transition-main', prevValue)
+
 let colorBoxes = document.querySelectorAll ('.color-box');
 let selectedColorType;
 
@@ -197,7 +217,7 @@ function switchToPallet2 () {
 selector1.addEventListener ('click', switchToPallet1)
 selector2.addEventListener ('click', switchToPallet2)
 
-let prevValue = cssVar ('transition-main');
+prevValue = cssVar ('transition-main');
 cssVar ('transition-main', '0s')
 
 if (localStorage.selectedPallet == 'pallet2') {
@@ -222,7 +242,7 @@ function toggleMenu (event) {
 	let cssStyles = window.getComputedStyle (menuWithColors);
 
 	if (cssStyles.getPropertyValue ('display') == 'none') menuWithColors.style.display = 'block';
-	else if (cssStyles.getPropertyValue ('display') == 'block') setTimeout (() => menuWithColors.style.display = 'none', 300);
+	else if (cssStyles.getPropertyValue ('display') == 'block') setTimeout (() => menuWithColors.style.display = 'none', transition);
 
 	setTimeout (() => target.nextSibling.nextSibling.classList.toggle ('menu-shown'), 1)
 }
@@ -232,7 +252,7 @@ menuItems = Array.from (menuItems)
 
 for (let menuItem of menuItems) {
 	if (menuItem.innerHTML == localStorage.colorType) {
-		menuItem.style.cssText = 'font-size: 1.25rem; color: #f4b400;';
+		menuItem.style.cssText = 'font-size: 1.25rem; color: #3367d6;';
 		break;
 	}
 }
@@ -241,7 +261,7 @@ for (let menuItem of menuItems) {
 	menuItem.addEventListener ('click', function () {
 		selectedColorType = event.target.innerHTML;
 		localStorage.colorType = selectedColorType;
-		menuItem.style.cssText = 'font-size: 1.25rem; color: #f4b400;';
+		menuItem.style.cssText = 'font-size: 1.25rem; color: #3367d6;';
 
 		for (let toRemoveStyles of menuItems) {
 			if (toRemoveStyles != menuItem) toRemoveStyles.style.cssText = '';
@@ -254,8 +274,6 @@ for (let menuItem of menuItems) {
 		toggleMenu (toTheFunc)
 	})
 }
-
-let themeToggler = document.querySelector ('.theme-toggler');
 
 function toggleTheme (event) {
 	let target = event.target.closest ('div');
@@ -270,8 +288,10 @@ function toggleTheme (event) {
 
 	cssVar ('bgc-main', cssVar ('bgc-secondary'));
 	if (cssVar ('bgc-main') == '#ddd') {
+		localStorage.theme = 'light';
 		cssVar ('bgc-secondary', '#1e1e24');
 	} else {
+		localStorage.theme = 'dark';
 		cssVar ('bgc-secondary', '#ddd');
 	}
 }
@@ -293,6 +313,7 @@ document.body.addEventListener('click', function () {
 		target: menuTrigger
 	};
 
-	if (target != menuTrigger && target != colorTypeMenu && target.parentNode != colorTypeMenu
+	if (target != menuTrigger && target != colorTypeMenu && target.parentNode != colorTypeMenu &&
+	target != themeToggler && target != themeToggler.firstChild
 	&& colorTypeMenu.classList.contains ('menu-shown')) toggleMenu (toFunc);
 })
