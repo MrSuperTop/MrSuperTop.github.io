@@ -75,3 +75,30 @@ function toggleTheme () {
 }
 
 themeToggler.addEventListener ('click', toggleTheme);
+
+//
+
+let allToInputBtns = document.querySelectorAll ('.to-input');
+let resultWindow = document.querySelector ('.result-window');
+
+for (let btn of allToInputBtns) {
+	btn.addEventListener ('click', function () {
+		resultWindow.value += btn.innerHTML;
+	})
+}
+
+let equalBtn = document.querySelector ('.equal-btn');
+let clearBtn = document.querySelector ('.clear-btn');
+let backspaceBtn = document.querySelector ('.backspace-btn');
+
+equalBtn.addEventListener ('click', function () {
+	resultWindow.value = eval (resultWindow.value);
+})
+
+clearBtn.addEventListener ('click', function () {
+	resultWindow.value = '';
+})
+
+backspaceBtn.addEventListener ('click', function () {
+	resultWindow.value = resultWindow.value.slice (0, resultWindow.value.length - 1);
+})

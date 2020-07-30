@@ -30,27 +30,41 @@
 </head>
 <body>
 
-	<h1>Hello, World!</h1>
-
-	<pre class="line-numbers"><code class="language-css match-braces">
-		/* ------- all vars ------- */
-
-		--bgc-primary: #ddd;
-		--bgc-secondary: #1e1e24;
-		--slider-thumb-color: #3498db;
-
-		--fc-primary: #000;
-		--fc-secondary: #fff;
-
-		--transition-primary: .3s;
-		--transition-secondary: calc(var(--transition-primary) / 2);
-
-		--bdrs-primary: .3rem;
-	</code></pre>
-
 	<div class="theme-toggler presseble-btn"><span class="material-icons">wb_sunny</span></div>
 
-	<div class="presseble-btn showcase-btn">Hello, click me!</div>
+	<main>
+		<input type="textview" class="result-window" value=""></input>
+		<div class="calc-row">
+			<div class="calc-btn presseble-btn clear-btn">C</div>
+			<div class="calc-btn presseble-btn to-input sign">/</div>
+			<div class="calc-btn presseble-btn to-input sign">*</div>
+			<div class="calc-btn presseble-btn backspace-btn"><i class="fas fa-backspace"></i></div>
+		</div>
+		<div class="calc-row">
+			<div class="calc-btn presseble-btn to-input">7</div>
+			<div class="calc-btn presseble-btn to-input">8</div>
+			<div class="calc-btn presseble-btn to-input">9</div>
+			<div class="calc-btn presseble-btn to-input sign">-</div>
+		</div>
+		<div class="calc-row">
+			<div class="calc-btn presseble-btn to-input">4</div>
+			<div class="calc-btn presseble-btn to-input">5</div>
+			<div class="calc-btn presseble-btn to-input">6</div>
+			<div class="calc-btn presseble-btn to-input sign">+</div>
+		</div>
+		<div class="calc-row">
+			<div class="calc-btn presseble-btn to-input">1</div>
+			<div class="calc-btn presseble-btn to-input">2</div>
+			<div class="calc-btn presseble-btn to-input">3</div>
+			<div class="calc-btn presseble-btn to-input">)</div>
+		</div>
+		<div class="calc-row">
+			<div class="calc-btn presseble-btn to-input">(</div>
+			<div class="calc-btn presseble-btn to-input">0</div>
+			<div class="calc-btn presseble-btn to-input">.</div>
+			<div class="calc-btn presseble-btn equal-btn">=</div>
+		</div>
+	</main>
 
 	<!-- ---------------- My js ---------------- -->
 	<script defer src="js/myScripts.js"></script>
