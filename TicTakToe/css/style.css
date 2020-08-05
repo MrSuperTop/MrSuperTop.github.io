@@ -44,12 +44,18 @@ body::-webkit-scrollbar-thumb
 	background: var(--slider-thumb-color);
 }
 
-.grid td
+.grid {
+	display: grid;
+
+	grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: .5rem;
+}
+
+.grid div
 {
 	width: 5rem;
 	height: 5rem;
-
-	margin: 1rem;
 }
 
 .grid-img
@@ -62,12 +68,7 @@ body::-webkit-scrollbar-thumb
 	z-index: -1;
 }
 
-table
-{
-	border-spacing: .15rem;
-}
-
-table img[src="img/X.png"], img[src="img/O.png"]
+.grid img[src="img/X.png"], img[src="img/O.png"]
 {
 	width: 5rem;
 	height: 5rem;

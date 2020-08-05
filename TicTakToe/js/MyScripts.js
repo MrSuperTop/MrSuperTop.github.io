@@ -1,4 +1,4 @@
-let allTds = document.querySelectorAll ('table td');
+let allTds = document.querySelectorAll ('.grid div');
 var flag = false;
 var grid = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var dataForWinCheck = [0, 1, 2, 3, 4, 5, 6, 7, 8, 0, 3, 6, 1, 4, 7, 2, 5, 8, 0, 4, 8, 2, 4, 6];
@@ -110,9 +110,10 @@ function winCheck () {
 
 for (td of allTds) {
 	td.addEventListener ('click', function () {
+		console.log (1)
 
 		let img = document.createElement ('img');
-		let target = event.target.closest ('td');
+		let target = event.target;
 		if (!flag && !target.innerHTML) {
 			img.setAttribute('src', 'img/X.png');
 			grid [+event.target.dataset.number] = 1;
@@ -150,7 +151,7 @@ restart.addEventListener ('click', function () {
 			td.innerHTML = ''
 		}
 	}, cssTransition * 1000)
-	for (img of document.querySelectorAll ('table img[src="img/X.png"], img[src="img/O.png"]')) {
+	for (img of document.querySelectorAll ('.grid img[src="img/X.png"], img[src="img/O.png"]')) {
 		if (!img.classList.contains ('winner-img') && !img.classList.contains ('whos-turn-img')) {
 			img.style.opacity = '0';
 		}
