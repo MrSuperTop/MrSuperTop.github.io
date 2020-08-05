@@ -154,7 +154,7 @@ let invertBtn = document.querySelector ('.invert-btn');
 let degBtn = document.querySelector ('.deg-btn');
 let radBtn = document.querySelector ('.rad-btn');
 
-equalBtn.addEventListener ('click', function () {
+function equal () {
 	let toEval = resultWindow.value;
 
 	while (toEval.includes ('π')) {
@@ -191,7 +191,9 @@ equalBtn.addEventListener ('click', function () {
 
 	if (toEval != '') resultWindow.value = String (eval (toEval));
 	else resultWindow.value = ''
-})
+}
+
+equalBtn.addEventListener ('click', equal)
 
 clearBtn.addEventListener ('click', function () {
 	resultWindow.value = '';
@@ -229,3 +231,16 @@ function setRad () {
 }
 
 invertBtn.addEventListener ('click', invertBtns)
+
+let singsArray = ['+', '-', '*', '/'];
+
+function isASing (char) {
+	if (singsArray.includes (char)) return true;
+	else return false;
+}
+
+document.body.addEventListener ('keydown', function () {
+	if (isItANumber (event.key) || singsArray.includes (event.key)) resultWindow.value += event.key;
+	if (event.key == 'Backspace') resultWindow.value = resultWindow.value.slice (0, resultWindow.value.length - 1);
+	if (event.key == 'Enter') equal ()
+})
