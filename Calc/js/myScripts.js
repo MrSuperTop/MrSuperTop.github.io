@@ -189,7 +189,7 @@ function equal () {
 		}
 	}
 
-	if (toEval != '') resultWindow.value = String (eval (toEval));
+	if (toEval != '') resultWindow.value = String (eval (toEval).toFixed (4));
 	else resultWindow.value = ''
 }
 
