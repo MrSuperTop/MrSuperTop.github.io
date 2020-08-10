@@ -22,7 +22,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 
 	<!-- ---------------- Prism css ---------------- -->
-	<link href="css/prism.css" rel="stylesheet" />
+	<link href="css/prism.css" rel="stylesheet"/>
 
 	<!-- ---------------- My css ---------------- -->
 	<link rel="stylesheet" href="css/style.css">
@@ -30,27 +30,25 @@
 </head>
 <body>
 
-	<h1>Hello, World!</h1>
+	<h1>Password generator</h1>
 
-	<pre class="line-numbers"><code class="language-css match-braces">
-		/* ------- all vars ------- */
+	<div class="all-checkboxes">
 
-		--bgc-primary: #ddd;
-		--bgc-secondary: #1e1e24;
-		--slider-thumb-color: #3498db;
+		<div class="settings-title">Settings:</div>
 
-		--fc-primary: #000;
-		--fc-secondary: #fff;
+		<div class="length-input-box">Password length: <input type="text" class="password-length"></div>
+		<div class="checkbox-box"><input type="checkbox">Lowercase letters (abc)</div>
+		<div class="checkbox-box"><input type="checkbox">Uppercase letters (ABC)</div>
+		<div class="checkbox-box"><input type="checkbox">Numbers (0, 1, 2)</div>
+		<div class="checkbox-box"><input type="checkbox">Special symbols (!@#$%)</div>
+		<div class="checkbox-box"><input type="checkbox" checked>Copy the password</div>
+	</div>
 
-		--transition-primary: .3s;
-		--transition-secondary: calc(var(--transition-primary) / 2);
+	<input class="result" placeholder="Your password"></input>
 
-		--bdrs-primary: .3rem;
-	</code></pre>
+	<div class="generate-btn presseble-btn">Generate password</div>
 
 	<div class="theme-toggler presseble-btn"><span class="material-icons">wb_sunny</span></div>
-
-	<div class="presseble-btn showcase-btn">Hello, click me!</div>
 
 	<!-- ---------------- My js ---------------- -->
 	<script defer src="js/script.js"></script>
