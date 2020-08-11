@@ -1,0 +1,188 @@
+/* ---------------- root ----------------  */
+
+:root {
+	font-size: 16px;
+	font-family: 'Montserrat', sans-serif;
+
+	/* ------- all vars ------- */
+
+	--bgc-primary: #ddd;
+	--bgc-secondary: #1e1e24;
+	--slider-thumb-color: #3498db;
+
+	--fc-primary: #000;
+	--fc-secondary: #fff;
+
+	--transition-primary: .3s;
+	--transition-secondary: calc(var(--transition-primary) / 2);
+
+	--bdrs-primary: .3rem;
+}
+
+/* ---------------- body ---------------- */
+
+body {
+	background: var(--bgc-primary);
+	color: var(--fc-primary);
+
+	transition: all var(--transition-primary);
+  -moz-transition: all var(--transition-primary);
+  -webkit-transition: all var(--transition-primary);
+  -o-transition: all var(--transition-primary);
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: flex-start;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
+
+	height: 100vh;
+	width: 100vw;
+
+	margin: 0;
+	padding: 0;
+}
+
+body::-webkit-scrollbar {
+	width: 0.25rem;
+	height: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+	background: var(--bgc-primary);
+}
+
+body::-webkit-scrollbar-thumb {
+	background: var(--slider-thumb-color);
+}
+
+.material-icons {
+	user-select: none;
+}
+
+/* ---------------- presseble-btn ----------------  */
+
+.showcase-btn {
+	margin-top: 1rem;
+	padding: 1rem;
+
+	background-color: var(--bgc-secondary);
+	border-radius: var(--bdrs-primary);
+
+	font-weight: bolder;
+	color: var(--fc-secondary);
+	font-size: 1.25rem;
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+
+	user-select: none;
+}
+
+.presseble-btn {
+	transition: all calc(var(--transition-primary) / 2) 0s ease-in-out;
+	will-change: transform;
+}
+
+.small-btn {
+	transform: scale(.9);
+}
+
+/* ---------------- theme toggler ---------------- */
+
+.theme-toggler {
+	background-color: var(--bgc-secondary);
+	color: var(--fc-secondary);
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: var(--bdrs-primary);
+
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+	padding: .75rem;
+
+	transition: all var(--transition-primary);
+  -moz-transition: all var(--transition-primary);
+  -webkit-transition: all var(--transition-primary);
+  -o-transition: all var(--transition-primary);
+}
+
+.password-to-check {
+	width: 25rem;
+	height: 5rem;
+
+	text-align: center;
+}
+
+.checkers {
+	margin-top: 2rem;
+	padding: 2rem;
+	border-radius: var(--bdrs-primary);
+
+	font-size: 1.25rem;
+
+	background: var(--bgc-secondary);
+
+	transition: var(--transition-primary);
+}
+
+.checker:nth-child(1) {
+	margin-top: 0rem;
+}
+
+.checker {
+	margin-top: 1rem;
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+
+	transition: var(--transition-primary);
+}
+
+.checker .fas {
+	font-size: 2rem;
+
+	margin: .25rem 1.5rem 0rem 0rem;
+}
+
+.bad {
+	color: #db4437;
+}
+
+.ok {
+	color: #0f9d58;
+}
+
+/* ---------------- mobile styles ---------------- */
+
+@media only screen and (min-width : 0px) and (max-width : 580px) {
+	/* от max-width до min-width (размер экрана) */
+}

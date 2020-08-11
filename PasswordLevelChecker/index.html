@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+	<!-- ---------------- Title ---------------- -->
+	<title>My Page</title>
+	<link rel="shortcut icon" href="page-icon.ico"/>
+
+	<!-- ---------------- view-port ---------------- -->
+	<meta name="viewport" content="width=device-width, initial-scale=0.75">
+
+	<!-- ---------------- Google Font ---------------- -->
+
+	<!-- Roboto -->
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+	<!-- Montserrat -->
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+	<!-- ---------------- Font-Awesome + Google Icons ---------------- -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+	<!-- ---------------- Prism css ---------------- -->
+	<link href="css/prism.css" rel="stylesheet" />
+
+	<!-- ---------------- My css ---------------- -->
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+	<h1>Password level checker</h1>
+
+	<textarea class="password-to-check"></textarea>
+
+	<div class="checkers">
+		<div class="checker bad"><i class="fas fa-exclamation"></i> Password length atleast 8 chars.</div>
+		<div class="checker bad"><i class="fas fa-exclamation"></i> Contains uppercase letters.</div>
+		<div class="checker bad"><i class="fas fa-exclamation"></i> Contains lowercase letters.</div>
+		<div class="checker bad"><i class="fas fa-exclamation"></i> Contains numbers.</div>
+		<div class="checker bad"><i class="fas fa-exclamation"></i> Contains specital symbols.</div>
+	</div>
+
+	<div class="theme-toggler presseble-btn"><span class="material-icons">wb_sunny</span></div>
+
+	<!-- ---------------- My js ---------------- -->
+	<script defer src="js/script.js"></script>
+
+	<!-- ---------------- Prism js ---------------- -->
+	<script defer src="js/prism.js"></script>
+
+	<!-- ---------------- Auto Reload js script ---------------- -->
+	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+</body>
+</html>
