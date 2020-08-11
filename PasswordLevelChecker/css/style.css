@@ -135,18 +135,29 @@ body::-webkit-scrollbar-thumb {
 	height: 5rem;
 
 	text-align: center;
+
+	background: var(--bgc-secondary);
+	color: var(--fc-secondary);
+
+	transition: all var(--transition-primary);
 }
 
-.checkers {
+.checkers, .warning-box {
 	margin-top: 2rem;
 	padding: 2rem;
 	border-radius: var(--bdrs-primary);
 
 	font-size: 1.25rem;
+	text-align: left;
 
 	background: var(--bgc-secondary);
 
 	transition: var(--transition-primary);
+}
+
+.warning-box {
+	display: none;
+	opacity: 0;
 }
 
 .checker:nth-child(1) {
@@ -179,6 +190,13 @@ body::-webkit-scrollbar-thumb {
 
 .ok {
 	color: #0f9d58;
+}
+
+.warning {
+	color: #db4437;
+	font-weight: bolder;
+
+	transition: var(--transition-primary);
 }
 
 /* ---------------- mobile styles ---------------- */

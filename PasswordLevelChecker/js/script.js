@@ -79,14 +79,22 @@ themeToggler.addEventListener ('click', toggleTheme);
 //
 
 let allCheckers = document.querySelectorAll ('.checker');
+let checkersBox = document.querySelector ('.checkers');
 let passwordInput = document.querySelector ('.password-to-check');
+let warning = document.querySelector ('.warning');
+let warningBox = document.querySelector ('.warning-box');
 
 let charsObjc = {
 	lowercase: generateCharsArray (97, 26),
 	uppercase: generateCharsArray (65, 26),
 	numbers: generateCharsArray (48, 10),
-	specialSymbols: [...generateCharsArray (33, 15), ...generateCharsArray (58, 7), ...generateCharsArray (123, 4)],
+	specialSymbols: ` !"#$%&'()*+,-./:;<=>?@[\]^_` + '`' + `{|}~`.split (''),
+	returnAllTogether () {
+		return [...this.lowercase, ...this.uppercase, ...this.numbers, ...this.specialSymbols]
+	},
 };
+
+console.log (charsObjc.returnAllTogether ())
 
 function generateCharsArray (start, howManyChars) {
 	let result = [];
@@ -110,8 +118,9 @@ function addBad (checker) {
 	checker.firstChild.classList.remove ('fa-check')
 }
 
-function hasLetter (word, whichLetter) {
+function hasLetter (word, whichLetter = '') {
 	for (let char of word) {
+		if (!charsObjc.returnAllTogether ().includes (char)) return 'notInArray';
 		if (whichLetter == 'Uppercase' && charsObjc.uppercase.includes (char)) return true;
 		if (whichLetter == 'Lowercase' && charsObjc.lowercase.includes (char)) return true;
 		if (whichLetter == 'Number' && charsObjc.numbers.includes (char)) return true;
@@ -120,9 +129,25 @@ function hasLetter (word, whichLetter) {
 }
 
 passwordInput.addEventListener ('input', () => {
-	passwordInput.value.length >= 8 ? addOk (allCheckers [0]) : addBad (allCheckers [0]);
-	hasLetter (passwordInput.value, 'Uppercase') ? addOk (allCheckers [1]) : addBad (allCheckers [1]);
-	hasLetter (passwordInput.value, 'Lowercase') ? addOk (allCheckers [2]) : addBad (allCheckers [2]);
-	hasLetter (passwordInput.value, 'Number') ? addOk (allCheckers [3]) : addBad (allCheckers [3]);
-	hasLetter (passwordInput.value, 'SpecialCaracter') ? addOk (allCheckers [4]) : addBad (allCheckers [4]);
+	if (hasLetter (passwordInput.value) == 'notInArray')  {
+		checkersBox.style.opacity = 0;
+		setTimeout (() => {
+			checkersBox.style.display = 'none';
+			warningBox.style.display = 'block';
+			setTimeout (() => warningBox.style.opacity = 1, 10)
+		}, transition);
+	} else {
+		warningBox.style.opacity = 0;
+		setTimeout (() => {
+			warningBox.style.display = 'none';
+			checkersBox.style.display = 'block';
+			setTimeout (() => checkersBox.style.opacity = 1, 10)
+		}, transition);
+
+		passwordInput.value.length >= 8 ? addOk (allCheckers [0]) : addBad (allCheckers [0]);
+		hasLetter (passwordInput.value, 'Uppercase') ? addOk (allCheckers [1]) : addBad (allCheckers [1]);
+		hasLetter (passwordInput.value, 'Lowercase') ? addOk (allCheckers [2]) : addBad (allCheckers [2]);
+		hasLetter (passwordInput.value, 'Number') ? addOk (allCheckers [3]) : addBad (allCheckers [3]);
+		hasLetter (passwordInput.value, 'SpecialCaracter') ? addOk (allCheckers [4]) : addBad (allCheckers [4]);
+	}
 })

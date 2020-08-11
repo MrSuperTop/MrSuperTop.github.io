@@ -98,7 +98,7 @@ let charsObjc = {
 	lowercase: generateCharsArray (97, 26),
 	uppercase: generateCharsArray (65, 26),
 	numbers: generateCharsArray (48, 10),
-	specialSymbols: [...generateCharsArray (33, 15), ...generateCharsArray (58, 7), ...generateCharsArray (123, 4)],
+	specialSymbols: ` !"#$%&'()*+,-./:;<=>?@[\]^_` + '`' + `{|}~`.split (''),
 };
 
 window.addEventListener ('load', () => {
