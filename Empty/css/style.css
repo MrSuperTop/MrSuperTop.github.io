@@ -8,10 +8,13 @@
 
 	--bgc-primary: #ddd;
 	--bgc-secondary: #1e1e24;
+	--bgc-tertiary: #333;
+	--bgc-quaternary: #fff;
 	--slider-thumb-color: #3498db;
 
 	--fc-primary: #000;
 	--fc-secondary: #fff;
+	--fc-tertiary: #ddd;
 
 	--transition-primary: .3s;
 	--transition-secondary: calc(var(--transition-primary) / 2);
@@ -37,7 +40,6 @@ body {
 	display: flex;
 	-ms-align-items: center;
 	align-items: center;
-	justify-content: center;
 	-webkit-flex-direction: column;
 	-moz-flex-direction: column;
 	-ms-flex-direction: column;
@@ -52,8 +54,9 @@ body {
 }
 
 body::-webkit-scrollbar {
-	width: 0.25rem;
-	height: 0.25rem;
+	--size: .25rem;
+	width: var(--size);
+	height: var(--size);
 }
 
 body::-webkit-scrollbar-track {
@@ -70,31 +73,8 @@ body::-webkit-scrollbar-thumb {
 
 /* ---------------- presseble-btn ----------------  */
 
-.showcase-btn {
-	margin-top: 1rem;
-	padding: 1rem;
-
-	background-color: var(--bgc-secondary);
-	border-radius: var(--bdrs-primary);
-
-	font-weight: bolder;
-	color: var(--fc-secondary);
-	font-size: 1.25rem;
-
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flex;
-	display: -o-flex;
-	display: flex;
-	-ms-align-items: center;
-	align-items: center;
-	justify-content: center;
-
-	user-select: none;
-}
-
 .presseble-btn {
-	transition: all calc(var(--transition-primary) / 2) 0s ease-in-out;
+	transition: all var(--transition-secondary) 0s ease-in-out;
 	will-change: transform;
 }
 
@@ -117,12 +97,13 @@ body::-webkit-scrollbar-thumb {
 	align-items: center;
 	justify-content: center;
 
-	border-radius: var(--bdrs-primary);
-
 	position: absolute;
 	top: 1rem;
 	right: 1rem;
 	padding: .75rem;
+	border-radius: var(--bdrs-primary);
+
+	cursor: pointer;
 
 	transition: all var(--transition-primary);
   -moz-transition: all var(--transition-primary);
@@ -130,8 +111,47 @@ body::-webkit-scrollbar-thumb {
   -o-transition: all var(--transition-primary);
 }
 
+/* ---------------- btn styles ---------------- */
+
+.btn {
+	padding: 1rem;
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: var(--bdrs-primary);
+	color: var(--fc-secondary);
+
+	transition: all var(--transition-secondary);
+  -moz-transition: all var(--transition-secondary);
+  -webkit-transition: all var(--transition-secondary);
+  -o-transition: all var(--transition-secondary);
+
+  user-select: none;
+}
+
+/* ---------------- own slyles ---------------- */
+
+.btn-with-tooltip {
+	font-weight: bolder;
+	background-color: red;
+
+	cursor: pointer;
+}
+
 /* ---------------- mobile styles ---------------- */
 
 @media only screen and (min-width : 0px) and (max-width : 580px) {
 	/* от max-width до min-width (размер экрана) */
+
+	.theme-toggler {
+		bottom: 1rem;
+		top: auto;
+	}
 }
