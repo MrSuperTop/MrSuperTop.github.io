@@ -136,7 +136,7 @@ body::-webkit-scrollbar-thumb {
   user-select: none;
 }
 
-/* ---------------- own slyles ---------------- */
+/* ---------------- tooltip ---------------- */
 
 .btn-with-tooltip {
 	font-weight: bolder;
@@ -144,6 +144,10 @@ body::-webkit-scrollbar-thumb {
 
 	cursor: pointer;
 }
+
+/* ---------------- own slyles ---------------- */
+
+
 
 /* ---------------- mobile styles ---------------- */
 

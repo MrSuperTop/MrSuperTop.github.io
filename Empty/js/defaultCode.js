@@ -74,17 +74,17 @@ themeToggler.addEventListener ('click', toggleTheme);
 
 // Popper
 
-function createNewPopper (trigger, tooltip, placement, offset) {
+function createNewPopper (trigger, tooltip, settings) {
 	let popperInstance = null;
 
 	function createTooltip() {
 	  popperInstance = Popper.createPopper(button, tooltip, {
-	  	placement: placement,
+	  	placement: settings [0],
 	    modifiers: [
 	      {
 	        name: 'offset',
 	        options: {
-	          offset: offset,
+	          offset: settings [1],
 	        },
 	      },
 	    ],

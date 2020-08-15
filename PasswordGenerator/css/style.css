@@ -115,6 +115,22 @@ body::-webkit-scrollbar-thumb {
   -o-transition: all var(--transition-primary);
 }
 
+main {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
+}
+
 .all-checkboxes {
 	display: -webkit-flex;
 	display: -moz-flex;
@@ -129,7 +145,6 @@ body::-webkit-scrollbar-thumb {
 	-o-flex-direction: column;
 	flex-direction: column;
 
-	margin-left: 2rem;
 	padding: 1.5rem;
 
 	border-radius: var(--bdrs-primary);
@@ -155,8 +170,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .checkbox-box	input{
-	margin-right: 1rem;
-
 	width: 1.25rem;
 	height: 1.25rem;
 }
@@ -164,12 +177,10 @@ body::-webkit-scrollbar-thumb {
 .length-input-box
 {
 	margin-bottom: 1rem;
-	margin-left: .15rem;
 }
 
 .length-input-box input {
-	margin-left: 1rem;
-
+	margin-left: 2rem;
 	height: 1.5rem;
 	width: 5rem;
 
@@ -184,13 +195,9 @@ body::-webkit-scrollbar-thumb {
 	transition: var(--transition-primary);
 }
 
-h1 {
-	margin-left: 1rem;
-}
-
 .generate-btn {
 	width: 15rem;
-	margin: 2rem 0rem 0rem 2rem;
+	margin: 2rem 0rem 0rem 0rem;
 	padding: 1rem;
 	border-radius: var(--bdrs-primary);
 	background: #f4b400;
@@ -206,7 +213,7 @@ h1 {
 }
 
 .result {
-	margin: 2rem 0rem 0rem 2rem;
+	margin: 2rem 0rem 0rem 0rem;
 	padding: 1rem;
 	width: 80vw;
 	border-radius: var(--bdrs-primary);
@@ -223,4 +230,8 @@ h1 {
 
 @media only screen and (min-width : 0px) and (max-width : 580px) {
 	/* от max-width до min-width (размер экрана) */
+	.theme-toggler {
+		bottom: 1rem;
+		top: auto;
+	}
 }
