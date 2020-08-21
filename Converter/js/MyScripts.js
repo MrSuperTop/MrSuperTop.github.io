@@ -1,10 +1,20 @@
 let startBtn = document.getElementsByClassName ('convert-start-btn') [0];
-let result = document.getElementsByClassName ('result') [0];
+let result = document.querySelector ('.result');
+console.log (result)
 
 let engString = `qwertyuiop[]asdfghjkl;'zxcvbnm,./QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>? 1234567890!#$%^&*()_-+=`;
 let ruString =  `йцукенгшщзхъфывапролджэячсмитьбю.ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ, 1234567890!№;%:?*()_-+=`;
 
+let bodyiesHeights;
+
+function cssVar (name, value) {
+  if (name [0] != '-') name = '--' +name;
+  if (value) document.documentElement.style.setProperty (name, value);
+  return getComputedStyle (document.documentElement).getPropertyValue (name);
+}
+
 function resultCheckDisplay () {
+	result = document.querySelector ('.result')
 	if (result.textContent == '') {
 		result.style.display = 'none';
 	}
@@ -16,6 +26,8 @@ function resultCheckDisplay () {
 resultCheckDisplay ()
 
 startBtn.addEventListener ('click', function () {
+	bodyiesHeights = updateBodyHeights ();
+
 	let toWorkWith = document.getElementsByClassName ('main-text') [0].value;
 	let lengOfToWorkWith = document.getElementsByClassName ('selecting-leng') [0].value;
 
@@ -41,7 +53,7 @@ startBtn.addEventListener ('click', function () {
 		} else if (res.length == 0 && res != undefined) {
 			result.textContent = 'You didn`t write anything to input!';
 		} else if (res != undefined) {
-			result.textContent = 'Result: ' + res;
+			result.innerHTML = 'Result: ' + res;
 		}
 
 		resultCheckDisplay ()
@@ -54,6 +66,10 @@ document.querySelector ('.result-reversed').hidden = true;
 toReversTextArea.addEventListener ('input', reverseText)
 
 function reverseText ()  {
+	bodyiesHeights = updateBodyHeights ();
+
+	bodyiesHeights = updateBodyHeights ();
+
 	splitedString = document.querySelector ('.to-revers-text').value.split ('');
 
 	let reversed = '';
@@ -75,6 +91,7 @@ var toVariateTextArea = document.querySelector ('.to-variate-text');
 document.querySelector ('.result-variated').hidden = true;
 
 document.querySelector ('.variation-start-btn').addEventListener ('click', function () {
+	bodyiesHeights = updateBodyHeights ();
 
 	let variatedString = '';
 	for (let i = 0; i < toVariateTextArea.value.length; i++) {
@@ -126,6 +143,8 @@ toCodeTextArea.addEventListener ('input', codeAndDecode);
 shiftInput.addEventListener ('input', codeAndDecode);
 
 function codeAndDecode () {
+	bodyiesHeights = updateBodyHeights ();
+
 	if (+shiftInput.value > 26) shiftInput.value = 26;
 	if (+shiftInput.value < -26) shiftInput.value = -26;
 
@@ -326,3 +345,85 @@ function hideToastWithAnimation (toastToHide, animationOutTime, callBack) {
 }
 
 // Toasts part
+
+let allHeaders = document.querySelectorAll ('.collabsible-header');
+let allBodies = document.querySelectorAll ('.collabsible-body');
+let allLies = document.querySelectorAll ('.collabsible > li');
+bodyiesHeights = updateBodyHeights ();
+
+
+function updateBodyHeights () {
+	toReturn = []
+	cssVar ('transition-primary', '0s')
+	for (let body of allBodies) {
+		body.style.height = 'auto';
+		toReturn.push (body.clientHeight)
+		body.style.cssText = '';
+	}
+	setTimeout (() => cssVar ('transition-primary', '.3s'))
+
+	allActiveCollabsibles = document.querySelectorAll ('.collabsible-body-show');
+
+	for (let collabsible of allActiveCollabsibles) {
+		collabsible.style.height = toReturn [Array.from (allActiveCollabsibles).indexOf (collabsible)] + 'px';
+	}
+
+	return toReturn
+}
+
+for (let header of allHeaders) {
+	header.addEventListener ('click', function () {
+		let prevLi = '';
+		let target = event.target.closest ('div');
+		target.parentNode.classList.add ('activated');
+		let collabsibleBody = target.nextSibling.nextSibling
+		collabsibleBody.classList.toggle ('collabsible-body-show')
+		let indexOfHeaderInList = Array.prototype.slice.call (allHeaders).indexOf (header);
+		if (collabsibleBody.classList.contains ('collabsible-body-show')) {
+			collabsibleBody.style.height = bodyiesHeights [indexOfHeaderInList] + 'px'
+		} else {
+			collabsibleBody.style.cssText = '';
+		}
+		for (li of allLies) {
+			if (li.classList.contains ('activated') && li != target.parentNode) {
+				prevLi = li;
+				let target = li.children [0];
+				target.parentNode.classList.remove ('activated');
+				let collabsibleBody = target.nextSibling.nextSibling
+				collabsibleBody.classList.toggle ('collabsible-body-show')
+				let indexOfHeaderInList = Array.prototype.slice.call (allHeaders).indexOf (header);
+				if (collabsibleBody.classList.contains ('collabsible-body-show')) {
+					collabsibleBody.style.height = bodyiesHeights [indexOfHeaderInList] + 'px'
+				} else {
+					collabsibleBody.style.cssText = '';
+				}
+			} else if (li == target.parentNode && !target.parentNode.children [1].classList.contains ('collabsible-body-show')) {
+				li.classList.remove ('activated');
+			}
+		}
+	})
+}
+
+//
+
+let resultFieldObjct = document.querySelector ('.result-halfcaps')
+
+document.querySelector ('.to-halfcaps-text').addEventListener ('input', (event) => {
+	updateBodyHeights ()
+	toInnerHTML = []
+	hasToBeUppercase = true
+	for (let char of event.target.value) {
+		if (hasToBeUppercase) toInnerHTML.push (char.toUpperCase ());
+		else toInnerHTML.push (char.toLowerCase ());
+
+		hasToBeUppercase = !hasToBeUppercase
+	}
+
+	console.log (toInnerHTML.join (''))
+	if (toInnerHTML.join ('') != '') {
+		resultFieldObjct.style.display = 'block';
+		resultFieldObjct.innerHTML = 'Result: ' + toInnerHTML.join ("");
+	} else {
+		resultFieldObjct.style.display = 'none';
+	}
+})
