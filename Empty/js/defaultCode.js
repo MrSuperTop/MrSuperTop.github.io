@@ -34,7 +34,6 @@ let defaulVarsValues = ['#ddd', '#1e1e24', '#333', '#fff', '#000', '#fff', '#ddd
 let toChangeVarsValues = ['#1e1e24', '#ddd', '#fff', '#333', '#fff', '#000', '#fff'];
 
 // load theme from localStorage
-
 document.addEventListener ('DOMContentLoaded', () => {
 	prevValue = cssVar ('transition-primary');
 	cssVar ('transition-primary', '0s');

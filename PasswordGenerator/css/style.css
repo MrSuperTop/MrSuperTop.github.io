@@ -149,7 +149,7 @@ main {
 
 	border-radius: var(--bdrs-primary);
 
-	width: 20rem;
+	width: 30rem;
 
 	background-color: #4285f4;
 	color: var(--fc-secondary);
@@ -157,7 +157,7 @@ main {
 	font-size: 1.25rem;
 }
 
-.checkbox-box, .length-input-box {
+.checkbox-box, .length-input-box, .number-input-box {
 	display: -webkit-flex;
 	display: -moz-flex;
 	display: -ms-flex;
@@ -174,12 +174,14 @@ main {
 	height: 1.25rem;
 }
 
-.length-input-box
+.length-input-box, .number-input-box
 {
 	margin-bottom: 1rem;
+
+	transition: var(--transition-primary);
 }
 
-.length-input-box input {
+.password-length, .password-number {
 	margin-left: 2rem;
 	height: 1.5rem;
 	width: 5rem;
@@ -216,6 +218,7 @@ main {
 	margin: 2rem 0rem 0rem 0rem;
 	padding: 1rem;
 	width: 80vw;
+	height: 20vh;
 	border-radius: var(--bdrs-primary);
 
 	font-size: 1.5rem;
@@ -223,7 +226,7 @@ main {
 	background-color: var(--bgc-secondary);
 	color: var(--fc-secondary);
 
-	transition: var(--transition-primary);
+	text-align: center;
 }
 
 /* ---------------- mobile styles ---------------- */

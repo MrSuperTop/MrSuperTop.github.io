@@ -48,6 +48,8 @@
 			<div class="settings-title">Settings:</div>
 
 			<div class="length-input-box">Password length: <input type="text" class="password-length"></div>
+			<div class="number-input-box">Number of passwords to generate: <input type="text" class="password-number"></div>
+
 			<div class="checkbox-box"><input type="checkbox">Lowercase letters (abc)</div>
 			<div class="checkbox-box"><input type="checkbox">Uppercase letters (ABC)</div>
 			<div class="checkbox-box"><input type="checkbox">Numbers (0, 1, 2)</div>
@@ -55,7 +57,7 @@
 			<div class="checkbox-box"><input type="checkbox" checked>Copy the password</div>
 		</div>
 
-		<input class="result" placeholder="Your password"></input>
+		<textarea class="result" placeholder="Your password"></textarea>
 
 		<div class="generate-btn presseble-btn">Generate password</div>
 	</main>
@@ -70,8 +72,9 @@
 
 	<!-- ---------------- Auto Reload js script ---------------- -->
 	<script>
-		if (window.location.href.includes ('file:///'))
-		document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+		if (window.location.href.includes ('file:///')) {
+			document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+		}
 	</script>
 
 </body>

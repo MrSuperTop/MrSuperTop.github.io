@@ -1,6 +1,5 @@
 let startBtn = document.getElementsByClassName ('convert-start-btn') [0];
 let result = document.querySelector ('.result');
-console.log (result)
 
 let engString = `qwertyuiop[]asdfghjkl;'zxcvbnm,./QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>? 1234567890!#$%^&*()_-+=`;
 let ruString =  `йцукенгшщзхъфывапролджэячсмитьбю.ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ, 1234567890!№;%:?*()_-+=`;
@@ -406,6 +405,28 @@ for (let header of allHeaders) {
 
 //
 
+function generateCharsArray (start, howManyChars) {
+	let result = [];
+	for (let i = 0; i < howManyChars; i++) {
+		result.push (String.fromCharCode (i + start))
+	}
+	return result
+}
+
+let charsObjc = {
+	lowercase: generateCharsArray (97, 26),
+	uppercase: generateCharsArray (65, 26),
+	numbers: generateCharsArray (48, 10),
+	ruUppercase: [...generateCharsArray (1040, 32), 'Ё'],
+	ruLowercase: [...generateCharsArray (1072, 32), 'ё'],
+	specialSymbols: ` !"#$%&'()*+,-./:;<=>?@[\]^_` + '`' + `{|}~`.split (''),
+};
+
+charsObjc.ruLowercaseAndSS = [...charsObjc.ruLowercase, ...charsObjc.specialSymbols]
+charsObjc.engLowercaseAndSS = [...charsObjc.lowercase, ...charsObjc.specialSymbols]
+
+//
+
 let resultFieldObjct = document.querySelector ('.result-halfcaps')
 
 document.querySelector ('.to-halfcaps-text').addEventListener ('input', (event) => {
@@ -416,10 +437,9 @@ document.querySelector ('.to-halfcaps-text').addEventListener ('input', (event) 
 		if (hasToBeUppercase) toInnerHTML.push (char.toUpperCase ());
 		else toInnerHTML.push (char.toLowerCase ());
 
-		hasToBeUppercase = !hasToBeUppercase
+		if (!charsObjc.specialSymbols.includes (char)) hasToBeUppercase = !hasToBeUppercase
 	}
 
-	console.log (toInnerHTML.join (''))
 	if (toInnerHTML.join ('') != '') {
 		resultFieldObjct.style.display = 'block';
 		resultFieldObjct.innerHTML = 'Result: ' + toInnerHTML.join ("");
@@ -427,3 +447,73 @@ document.querySelector ('.to-halfcaps-text').addEventListener ('input', (event) 
 		resultFieldObjct.style.display = 'none';
 	}
 })
+
+//
+
+function getAllByIndexesArray (getFrom, indexes) {
+	let result = []
+	for (let i = 0; i < getFrom.length; i++) {
+		if (indexes.includes (i)) result.push (getFrom [i])
+	}
+	return result
+}
+
+function allArrrayToUpper (array) {
+	result = [];
+	for (let item of array) {
+		if (item.length == 1 || item == '') result.push (item.toUpperCase ());
+		else if (item != '') result.push (item [0].toUpperCase () + item.slice (1));
+	}
+	return result;
+}
+
+function chunkString (str, length) {
+  return str.match (new RegExp ('.{1,' + length + '}', 'g'));
+}
+
+toTranslitEng = [...'abvgde'.split (''), 'zh', ...'zijklmnoprstuf'.split (''), ...'khtschsh'.match(/.{1,2}/g), 'shch', 'ie', 'y', '', 'e', 'yu', 'ya', 'e']
+toTranslitRu = [...charsObjc.ruLowercase, ...charsObjc.ruUppercase, ...charsObjc.specialSymbols]
+
+toTranslitEng = [...toTranslitEng, ...allArrrayToUpper (toTranslitEng), ...charsObjc.specialSymbols]
+
+let inputField = document.querySelector ('.to-translit-text');
+let exportField = document.querySelector ('.result-translit');
+
+inputField.addEventListener ('input', (event) => {
+	updateBodyHeights ()
+
+	result = [];
+	for (let char of inputField.value) {
+		if (charsObjc.ruLowercaseAndSS.includes (char.toLowerCase ())) {
+			result.push (toTranslitEng [toTranslitRu.indexOf (char)])
+		}
+	}
+
+	// for (let i = 4; i > 0 && inputField.value != ''; i--) {
+	// 	allIndexes = []
+	// 	if (i == 3) i -= 1
+	// 	filtredTranslitEng = toTranslitEng.filter (function (item, index, array) {
+	// 		if (item.length == i) {
+	// 			allIndexes.push (index)
+	// 			return true;
+	// 		}
+	// 	})
+
+	// 	filteredTranslitRu = getAllByIndexesArray (toTranslitRu, allIndexes)
+
+	// 	for (let item of chunkString (inputField.value, i)) {
+	// 		if (charsObjc.lowercase.includes (item [0].toLowerCase ()) && filtredTranslitEng.includes (item)) {
+	// 			result.push (filteredTranslitRu [filtredTranslitEng.lastIndexOf (item)])
+	// 		}
+	// 	}
+	// }
+
+	// Переделать ^
+
+	if (result.join ('') != '') {
+		exportField.style.display = 'block';
+		exportField.innerHTML = 'Result: ' + result.join ('');
+	} else {
+		exportField.style.display = 'none';
+	}
+});

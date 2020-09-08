@@ -94,16 +94,21 @@ let allCheckboxes = document.querySelectorAll ('.checkbox-box input');
 let passwordLength = 2;
 let resultInput = document.querySelector ('.result');
 let passwordLengthInputField = document.querySelector ('.password-length');
+let numberOfPasswordsInputField = document.querySelector ('.password-number');
+
 let charsObjc = {
 	lowercase: generateCharsArray (97, 26),
 	uppercase: generateCharsArray (65, 26),
 	numbers: generateCharsArray (48, 10),
-	specialSymbols: ` !"#$%&'()*+,-./:;<=>?@[\]^_` + '`' + `{|}~`.split (''),
+	specialSymbols: `!"#$%&'()*+,-./:;<=>?@[\]^_` + '`' + `{|}~`.split (''),
 };
 
 window.addEventListener ('load', () => {
 	if (localStorage.passwordLength != undefined) passwordLengthInputField.value = localStorage.passwordLength;
 	else passwordLengthInputField.value = 32;
+
+	if (localStorage.passwordsNumber != undefined) numberOfPasswordsInputField.value = localStorage.passwordsNumber;
+	else passwordLengthInputField.value = numberOfPasswordsInputField.value = 1;
 
 	if (localStorage.checkboxValues != undefined) {
 		let importedCheckboxValues = JSON.parse (localStorage.checkboxValues);
@@ -116,9 +121,9 @@ window.addEventListener ('load', () => {
 	}
 })
 
-passwordLengthInputField.addEventListener ('input', () => {
-	localStorage.passwordLength = event.target.value;
-})
+passwordLengthInputField.addEventListener ('input', generatePasswords)
+
+numberOfPasswordsInputField.addEventListener ('input', generatePasswords);
 
 function saveCheckboxesValues () {
 	let toSave = [];
@@ -132,7 +137,12 @@ for (let checkbox of allCheckboxes) {
 	checkbox.addEventListener ('click', saveCheckboxesValues);
 }
 
-document.querySelector ('.generate-btn').addEventListener ('click', () => {
+document.querySelector ('.generate-btn').addEventListener ('click', generatePasswords);
+
+function generatePasswords () {
+	localStorage.passwordLength = passwordLengthInputField.value;
+	localStorage.passwordsNumber = numberOfPasswordsInputField.value;
+
 	passwordLength = +eval (passwordLengthInputField.value);
 	if (String (passwordLength) == 'NaN') passwordLength = 0;
 	let toGenerateCharsArray = [];
@@ -142,12 +152,30 @@ document.querySelector ('.generate-btn').addEventListener ('click', () => {
 	if (allCheckboxes [2].checked) toGenerateCharsArray.push (...charsObjc.numbers)
 	if (allCheckboxes [3].checked) toGenerateCharsArray.push (...charsObjc.specialSymbols)
 
+	let numberOfPasswords = +numberOfPasswordsInputField.value;
 	let result = [];
-	while (result.length != passwordLength) {
-		result.push (toGenerateCharsArray [getRandomInt (toGenerateCharsArray.length)])
-	}
-	resultInput.value = result.join ('');
+	let password = [];
+	let randomChar = 'a';
 
-	if (allCheckboxes [4].checked) navigator.clipboard.writeText (result.join (''));
+	for (let i = 0; i < numberOfPasswords; i++) {
+		while (result.length < passwordLength) {
+			randomChar = toGenerateCharsArray [getRandomInt (toGenerateCharsArray.length)];
+
+			while (randomChar == password [password.length]) {
+				randomChar = toGenerateCharsArray [getRandomInt (toGenerateCharsArray.length)];
+
+			}
+
+			result.push (randomChar)
+		}
+
+		password.push (...result)
+		password.push ('\n');
+		result = [];
+	}
+
+	resultInput.value = password.join ('');
+
+	if (allCheckboxes [4].checked) navigator.clipboard.writeText (password.join (''));
 	else resultInput.select();
-})
+}
