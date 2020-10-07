@@ -1,0 +1,46 @@
+.tooltip {
+  background: var(--bgc-tertiary);
+  color: var(--fc-secondary);
+
+  font-weight: bold;
+  font-size: 1rem;
+
+  padding: .5rem;
+  border-radius: var(--bdrs-primary);
+
+  display: none;
+}
+
+.tooltip[data-show] {
+  display: block;
+}
+
+.arrow,
+.arrow::before {
+  position: absolute;
+  width: .5rem;
+  height: .5rem;
+  z-index: -1;
+}
+
+.arrow::before {
+  content: '';
+  transform: rotate(45deg);
+  background: var(--bgc-tertiary);
+}
+
+.tooltip[data-popper-placement^='top'] > .arrow {
+  bottom: -4px;
+}
+
+.tooltip[data-popper-placement^='bottom'] > .arrow {
+  top: -4px;
+}
+
+.tooltip[data-popper-placement^='left'] > .arrow {
+  right: -4px;
+}
+
+.tooltip[data-popper-placement^='right'] > .arrow {
+  left: -4px;
+}

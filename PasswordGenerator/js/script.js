@@ -161,9 +161,8 @@ function generatePasswords () {
 		while (result.length < passwordLength) {
 			randomChar = toGenerateCharsArray [getRandomInt (toGenerateCharsArray.length)];
 
-			while (randomChar == password [password.length]) {
+			while (randomChar == result [result.length - 1]) {
 				randomChar = toGenerateCharsArray [getRandomInt (toGenerateCharsArray.length)];
-
 			}
 
 			result.push (randomChar)

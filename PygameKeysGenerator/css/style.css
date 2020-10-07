@@ -147,7 +147,35 @@ body::-webkit-scrollbar-thumb {
 
 /* =============== own slyles =============== */
 
+main {
+	margin-top: 5rem;
+}
 
+.all-inpits {
+	background-color: #4285f4;
+	padding: 2rem;
+	border-radius: var(--bdrs-primary);
+
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.keys-input {
+	text-align: center;
+	font-size: 1.5rem;
+
+	width: 20rem;
+	height: 7.5rem;
+
+	padding: 1rem;
+}
+
+.to-output {
+	margin-top: 1rem;
+	width: 75vw;
+	height: 50vh;
+}
 
 /* =============== mobile styles =============== */
 

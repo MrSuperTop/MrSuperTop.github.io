@@ -29,34 +29,18 @@
 
 </head>
 <body>
-	<pre class="line-numbers"><code class="language-css match-braces">
-		/* =============== all vars =============== */
-
-		--bgc-primary: #ddd;
-		--bgc-secondary: #1e1e24;
-		--bgc-tertiary: #333;
-		--bgc-quaternary: #fff;
-		--slider-thumb-color: #3498db;
-
-		--fc-primary: #000;
-		--fc-secondary: #fff;
-		--fc-tertiary: #ddd;
-
-		--transition-primary: .3s;
-		--transition-secondary: calc(var(--transition-primary) / 2);
-
-		--bdrs-primary: .3rem;
-	</code></pre>
 
 	<main>
-		<div class="btn btn-with-tooltip presseble-btn" aria-describedby="tooltip">Hover me!</div>
-    <div class="tooltip" role="tooltip">
-     Hello, I`m tooltip! <br> Some text...
-      <div class="arrow" data-popper-arrow></div>
-    </div>
-	</main>
+		<div class="theme-toggler presseble-btn"><span class="material-icons">wb_sunny</span></div>
 
-	<div class="theme-toggler presseble-btn"><span class="material-icons">wb_sunny</span></div>
+		<div class="all-inpits">
+			<textarea placeholder="Keys which has to be 'input' keys in your code" class="keys-input"></textarea>
+
+			<textarea class="to-output">
+			</textarea>
+
+		</div>
+	</main>
 
 	<!-- =============== Prism js =============== -->
 	<script defer src="js/prism.js"></script>
