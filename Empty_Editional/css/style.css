@@ -1,0 +1,161 @@
+/* =============== root ===============  */
+
+:root {
+	font-size: 16px;
+	font-family: 'Montserrat', sans-serif;
+
+	/* =============== all vars =============== */
+
+	--bgc-primary: #ddd;
+	--bgc-secondary: #1e1e24;
+	--bgc-tertiary: #333;
+	--bgc-quaternary: #fff;
+	--slider-thumb-color: #3498db;
+
+	--fc-primary: #000;
+	--fc-secondary: #fff;
+	--fc-tertiary: #ddd;
+
+	--transition-primary: .3s;
+	--transition-secondary: calc(var(--transition-primary) / 2);
+
+	--bdrs-primary: .3rem;
+}
+
+/* =============== body =============== */
+
+body {
+	background: var(--bgc-primary);
+	color: var(--fc-primary);
+
+	transition: all var(--transition-primary);
+  -moz-transition: all var(--transition-primary);
+  -webkit-transition: all var(--transition-primary);
+  -o-transition: all var(--transition-primary);
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
+
+	height: 200vh;
+	width: 100vw;
+
+	margin: 0;
+	padding: 0;
+}
+
+body::-webkit-scrollbar {
+	--size: .25rem;
+	width: var(--size);
+	height: var(--size);
+}
+
+body::-webkit-scrollbar-track {
+	background: var(--bgc-primary);
+}
+
+body::-webkit-scrollbar-thumb {
+	background: var(--slider-thumb-color);
+}
+
+.material-icons {
+	user-select: none;
+}
+
+/* =============== presseble-btn =============== */
+
+.presseble-btn {
+	transition: all var(--transition-secondary) 0s ease-in-out;
+	will-change: transform;
+}
+
+.small-btn {
+	transform: scale(.9);
+}
+
+/* =============== theme toggler =============== */
+
+.theme-toggler {
+	background-color: var(--bgc-secondary);
+	color: var(--fc-secondary);
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	padding: .75rem;
+	border-radius: var(--bdrs-primary);
+
+	cursor: pointer;
+
+	transition: all var(--transition-primary);
+  -moz-transition: all var(--transition-primary);
+  -webkit-transition: all var(--transition-primary);
+  -o-transition: all var(--transition-primary);
+}
+
+/* =============== btn styles =============== */
+
+.btn {
+	padding: 1rem;
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: var(--bdrs-primary);
+	color: var(--fc-secondary);
+
+	transition: all var(--transition-secondary);
+  -moz-transition: all var(--transition-secondary);
+  -webkit-transition: all var(--transition-secondary);
+  -o-transition: all var(--transition-secondary);
+
+  user-select: none;
+}
+
+/* =============== tooltip =============== */
+
+.btn-with-tooltip {
+	font-weight: bolder;
+	background-color: red;
+
+	cursor: pointer;
+}
+
+/* =============== own slyles =============== */
+
+
+
+/* =============== mobile styles =============== */
+
+@media only screen and (min-width : 0px) and (max-width : 580px) {
+	/* от max-width до min-width (размер экрана) */
+
+	.theme-toggler {
+		bottom: 1rem;
+		top: auto;
+	}
+}

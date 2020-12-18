@@ -70,3 +70,51 @@ function toggleTheme() {
 }
 
 themeToggler.addEventListener('click', toggleTheme);
+
+// Popper
+
+function createNewPopper(trigger, tooltip, settings) {
+	let popperInstance = null;
+
+	function createTooltip() {
+	  popperInstance = Popper.createPopper(button, tooltip, {
+	  	placement: settings [0],
+	    modifiers: [
+	      {
+	        name: 'offset',
+	        options: {
+	          offset: settings [1],
+	        },
+	      },
+	    ],
+	  });
+	}
+
+	function destroyTooltip() {
+	  if (popperInstance) {
+	    popperInstance.destroy();
+	    popperInstance = null;
+	  }
+	}
+
+	function showTooltip() {
+	  tooltip.setAttribute('data-show', '');
+	  createTooltip();
+	}
+
+	function hideTooltip() {
+	  tooltip.removeAttribute('data-show');
+	  destroyTooltip();
+	}
+
+	const showEvents = ['mouseenter', 'focus'];
+	const hideEvents = ['mouseleave', 'blur'];
+
+	showEvents.forEach(event => {
+	  button.addEventListener(event, showTooltip);
+	});
+
+	hideEvents.forEach(event => {
+	  button.addEventListener(event, hideTooltip);
+	});
+}
