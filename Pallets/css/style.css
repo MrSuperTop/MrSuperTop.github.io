@@ -213,6 +213,8 @@ nav {
 	-ms-align-items: center;
 	align-items: center;
 	justify-content: flex-start;
+
+	cursor: pointer;
 }
 
 .menu-item:hover {

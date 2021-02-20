@@ -147,10 +147,10 @@ function generatePasswords () {
 	if (String (passwordLength) == 'NaN') passwordLength = 0;
 	let toGenerateCharsArray = [];
 
-	if (allCheckboxes [0].checked) toGenerateCharsArray.push (...charsObjc.lowercase)
-	if (allCheckboxes [1].checked) toGenerateCharsArray.push (...charsObjc.uppercase)
-	if (allCheckboxes [2].checked) toGenerateCharsArray.push (...charsObjc.numbers)
-	if (allCheckboxes [3].checked) toGenerateCharsArray.push (...charsObjc.specialSymbols)
+	if (allCheckboxes [0].checked) toGenerateCharsArray.push(...charsObjc.lowercase)
+	if (allCheckboxes [1].checked) toGenerateCharsArray.push(...charsObjc.uppercase)
+	if (allCheckboxes [2].checked) toGenerateCharsArray.push(...charsObjc.numbers)
+	if (allCheckboxes [3].checked) toGenerateCharsArray.push(...charsObjc.specialSymbols)
 
 	let numberOfPasswords = +numberOfPasswordsInputField.value;
 	let result = [];
@@ -175,6 +175,6 @@ function generatePasswords () {
 
 	resultInput.value = password.join ('');
 
-	if (allCheckboxes [4].checked) navigator.clipboard.writeText (password.join (''));
+	if (allCheckboxes [4].checked) navigator.clipboard.writeText(password.slice(0, -1).join(''));
 	else resultInput.select();
 }
